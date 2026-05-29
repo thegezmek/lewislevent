@@ -136,6 +136,20 @@ function chunkFilms<T>(items: T[], size: number): T[][] {
   return blocks;
 }
 
+function CollectionCardTitle({ title }: { title: string }) {
+  const colon = title.indexOf(":");
+  if (colon === -1) {
+    return title;
+  }
+  return (
+    <>
+      {title.slice(0, colon + 1)}
+      <br />
+      {title.slice(colon + 1).trim()}
+    </>
+  );
+}
+
 export default function Home() {
   return (
     <div id="top" className="relative min-h-screen bg-[#0a0a0a] text-[#e8e4df]">
@@ -161,19 +175,13 @@ export default function Home() {
           className="scroll-mt-[5.5rem] bg-[#0a0a0a] sm:scroll-mt-24"
         >
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 md:px-10 md:py-20">
-            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-              <div>
-                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-stone-500">
-                  Collection story
-                </p>
-                <h2 className="mt-3 text-2xl font-bold uppercase leading-[1.18] tracking-[-0.03em] text-white antialiased sm:text-3xl md:text-4xl md:leading-[1.15] md:tracking-[-0.035em] lg:text-[2.5rem] lg:tracking-[-0.04em]">
-                  Collection Overview
-                </h2>
-              </div>
-              <p className="max-w-md text-sm leading-relaxed text-stone-500 sm:text-base">
-                Eight works—features and shorts—shot with a single temperament:
-                listen first, intervene rarely.
+            <div>
+              <p className="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-stone-500">
+                Collection story
               </p>
+              <h2 className="mt-3 text-2xl font-bold uppercase leading-[1.18] tracking-[-0.03em] text-white antialiased sm:text-3xl md:text-4xl md:leading-[1.15] md:tracking-[-0.035em] lg:text-[2.5rem] lg:tracking-[-0.04em]">
+                Collection Overview
+              </h2>
             </div>
 
             <div className="mt-10 md:mt-12">
@@ -216,7 +224,7 @@ export default function Home() {
                               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/75 via-transparent to-[#0a0a0a]/10 opacity-90 transition duration-500 group-hover:opacity-80" />
                             </div>
                             <h3 className="mt-2 text-sm font-semibold uppercase leading-snug tracking-[0.05em] text-stone-200 transition duration-300 group-hover:text-[#e9a31a] sm:text-base md:mt-2 md:text-sm">
-                              {project.shortTitle}
+                              <CollectionCardTitle title={project.shortTitle} />
                             </h3>
                             <div className="mt-2 flex flex-col gap-1 border-t border-stone-800/60 pt-2 text-xs text-stone-500 sm:text-[0.8125rem] md:mt-2 md:gap-1 md:pt-2">
                               <p className="text-xs font-medium uppercase tracking-[0.12em] text-stone-400 sm:tracking-[0.13em] md:tracking-[0.14em]">
@@ -316,25 +324,13 @@ export default function Home() {
           className="scroll-mt-[5.5rem] border-t border-stone-900/80 bg-[#0a0a0a]/95 sm:scroll-mt-24"
         >
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-32">
-            <div className="grid gap-10 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,0.28fr)] lg:items-start lg:gap-10">
-              <div>
-                <h2 className="max-w-3xl text-2xl font-semibold tracking-[-0.03em] text-stone-100 sm:text-3xl md:text-4xl">
-                  After the last light, we still roll. The frame is a shelter.
-                </h2>
-                <div className="mt-12 max-w-2xl space-y-6 text-base leading-relaxed text-stone-400 md:text-lg">
-                  <p>
-                    I work close to weather, soil, and the human body at its
-                    quiet limits. Each film in this collection asks what remains
-                    when systems fray—what green pushes through, what tenderness
-                    survives, what we choose to carry forward.
-                  </p>
-                </div>
-
-                <section className="mt-10 pt-2 md:mt-12 md:pt-3">
+            <div className="grid min-w-0 gap-8 sm:gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,13rem)] md:items-start md:gap-x-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,0.28fr)] lg:items-start lg:gap-10">
+              <div className="min-w-0">
+                <section>
                   <p className="mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-[#e9a31a]">
                     Director’s Profile
                   </p>
-                  <p className="max-w-2xl lg:max-w-[40ch] text-base leading-relaxed text-stone-300 md:text-lg">
+                  <p className="max-w-2xl text-base leading-relaxed text-stone-300 md:text-lg lg:max-w-[40ch]">
                     Lewis Levent is a British-Turkish documentary filmmaker and
                     founder of Gez Studio. His work spans multiple regions,
                     focusing on stories at the intersection of environmental
@@ -345,14 +341,14 @@ export default function Home() {
                 </section>
               </div>
 
-              <aside className="w-full lg:justify-self-end lg:pt-1">
-                <figure className="relative aspect-[4/5] overflow-hidden bg-stone-950 lg:aspect-[4/4.6]">
+              <aside className="min-w-0 w-full md:justify-self-end md:pt-0.5 lg:pt-1">
+                <figure className="relative aspect-[4/5] w-full overflow-hidden bg-stone-950 md:aspect-[3/4] md:mx-0 lg:aspect-[4/4.6]">
                   <Image
                     src={DIRECTOR_PROFILE_IMAGE}
                     alt="Portrait of Lewis Levent"
                     fill
                     className="object-contain"
-                    sizes="(min-width: 1024px) 30vw, 100vw"
+                    sizes="(min-width: 1024px) 30vw, (min-width: 768px) 16rem, 100vw"
                   />
                 </figure>
                 <DirectorGallery

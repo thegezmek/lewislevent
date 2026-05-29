@@ -43,14 +43,14 @@ export const projects: Project[] = [
     title: "From Ashes Part I: Land of the Honey Bug",
     shortTitle: "From Ashes I: Land of the Honey Bug",
     yearLabel: "2021 – 2025",
-    status: "post-production",
-    statusLabel: "[Post-Production]",
+    status: "completed",
+    statusLabel: "[Completed]",
     runtime: "73 mins",
     synopsis:
       "Two months after the 2021 wildfires, an elderly beekeeper returns to Muğla—ash, pine honey, and the honey bug at the heart of a tradition in flux.",
     country: "Türkiye",
     logline:
-      "After the fires, a beekeeper and his village reckon with ash, pine honey, and the tiny insect their whole tradition depends on.",
+      "After Türkiye’s 2021 wildfires, an elderly beekeeper returns to his devastated village as a pine honey community struggles to preserve an ancient way of life.",
     spriteIndex: 0,
     coverImage: "/covers/from-ashes-i-cover.png",
     stillImages: [
@@ -85,7 +85,7 @@ export const projects: Project[] = [
       { label: "Country", value: "Türkiye" },
       { label: "Language", value: "Turkish, English" },
       { label: "Runtime", value: "73 mins" },
-      { label: "Status", value: "Post-Production" },
+      { label: "Status", value: "Completed" },
     ],
   },
   {
@@ -93,14 +93,14 @@ export const projects: Project[] = [
     title: "From Ashes Part II: The Mountainside of Ormana",
     shortTitle: "From Ashes II: The Mountainside of Ormana",
     yearLabel: "2021 – 2025",
-    status: "post-production",
-    statusLabel: "[Post-Production]",
+    status: "completed",
+    statusLabel: "[Completed]",
     runtime: "55 mins",
     synopsis:
       "Summer 2021: the Manavgat fire bears down on Ormana—residents face the flames with local knowledge and community action when support is out of reach.",
     country: "Türkiye",
     logline:
-      "When the Manavgat fire reaches Ormana, villagers fight the flames with instinct and local knowledge—and without waiting for help.",
+      "During Türkiye’s 2021 wildfires, a mountain village in Manavgat confronts an advancing inferno, where community resilience becomes a frontline defence.",
     spriteIndex: 1,
     coverImage: "/covers/from-ashes-ii-cover.png",
     stillImages: [
@@ -135,7 +135,7 @@ export const projects: Project[] = [
       { label: "Country", value: "Türkiye" },
       { label: "Language", value: "Turkish, English" },
       { label: "Runtime", value: "55 mins" },
-      { label: "Status", value: "Post-Production" },
+      { label: "Status", value: "Completed" },
     ],
   },
   {
@@ -150,7 +150,7 @@ export const projects: Project[] = [
       "In Kenya, soil health and policy converge as farmers, scientists, and institutions turn back toward biological balance—and what it costs to rebuild stability at its source.",
     country: "Kenya, Rwanda",
     logline:
-      "Farmers, science, and policy move toward living soil again—tracing what it takes to steady land, food, and economy at the roots.",
+      "Across East Africa, farmers, scientists, and agricultural innovators seek to restore soil fertility and reduce dependence on chemical inputs.",
     spriteIndex: 2,
     coverImage: "/covers/kuzaya-cover.png",
     stillImages: [
@@ -192,14 +192,14 @@ export const projects: Project[] = [
     title: "Green Refuge",
     shortTitle: "Green Refuge",
     yearLabel: "2021 – 2025",
-    status: "post-production",
-    statusLabel: "Seeking distribution [Post-Production]",
+    status: "completed",
+    statusLabel: "[Completed]",
     runtime: "60 mins",
     synopsis:
       "Zo communities cross from Myanmar into Northeast India without refugee status; a community-led agroforestry effort ties displaced and host peoples to the land—and to each other.",
     country: "India, Myanmar",
     logline:
-      "Across the border without refugee status, Zo families and their hosts rebuild land and livelihood together through agroforestry.",
+      "On the Indo-Myanmar border, displaced Zo communities and their Indigenous hosts rebuild livelihoods together through agroforestry.",
     spriteIndex: 3,
     coverImage: "/stills/green-refuge/still-01.png",
     stillImages: [
@@ -231,7 +231,7 @@ export const projects: Project[] = [
         value: "English, Burmese, Mizo, Manipuri",
       },
       { label: "Runtime", value: "60 mins" },
-      { label: "Status", value: "Post-Production" },
+      { label: "Status", value: "Completed" },
     ],
   },
   {
@@ -244,9 +244,9 @@ export const projects: Project[] = [
     runtime: "60 mins",
     synopsis:
       "An Amsterdam DJ-producer lands in Kampala; sessions with a hip-hop collective become memory, then a record—improvisation, solitude, and sound between places.",
-    country: "Uganda, Netherlands, South Africa",
+    country: "Uganda, Netherlands",
     logline:
-      "Kampala jam sessions echo back in Amsterdam as one producer turns encounter, memory, and place into a record.",
+      "An Amsterdam-based DJ travels to Kampala, where spontaneous musical encounters become the foundation of a new record.",
     spriteIndex: 4,
     coverImage: "/covers/bon-aime-cover.png",
     stillImages: [
@@ -273,7 +273,7 @@ export const projects: Project[] = [
       { label: "Year", value: "2023–2024" },
       {
         label: "Country",
-        value: "Uganda, Netherlands, South Africa",
+        value: "Uganda, Netherlands",
       },
       { label: "Language", value: "English, Lugandan" },
       { label: "Status", value: "Post-Production" },
@@ -291,7 +291,7 @@ export const projects: Project[] = [
       "In Northeast India, a community-led weaving initiative with Impulse NGO Network turns traditional knowledge into income—and a buffer against trafficking and unsafe migration.",
     country: "India",
     logline:
-      "Weaving at home becomes income and protection for women facing exploitation and the pull of unsafe migration.",
+      "An indigenous artisan collective across the eight Northeastern states of India weaves peace silk, fostering resilience against human trafficking.",
     spriteIndex: 5,
     coverImage: "/covers/empower-cover.png",
     posterImage: "/posters/empower-poster.png",
@@ -323,7 +323,7 @@ export const projects: Project[] = [
         value: "English, Hindi, Burmese",
       },
       { label: "Runtime", value: "20 mins" },
-      { label: "Status", value: "Complete" },
+      { label: "Status", value: "Completed" },
     ],
   },
   {
@@ -331,14 +331,14 @@ export const projects: Project[] = [
     title: "Proteen",
     shortTitle: "Proteen",
     yearLabel: "2023",
-    status: "post-production",
-    statusLabel: "[Post-Production]",
+    status: "completed",
+    statusLabel: "[Completed]",
     runtime: "20 mins",
     synopsis:
       "Black soldier fly farming turns organic waste into feed and fertilizer—Proteen’s early days, circular economy, and rethinking waste, food, and opportunity in Uganda.",
     country: "Uganda",
     logline:
-      "From waste crisis to black soldier fly farming—watching a circular-economy company take shape from the ground up.",
+      "A journey with Proteen, transforming organic waste into Supercharged Fertilizer, revolutionizing farming in Africa with a circular system.",
     spriteIndex: 6,
     coverImage: "/covers/proteen-cover.png",
     posterImage: "/posters/proteen-poster.png",
@@ -368,7 +368,7 @@ export const projects: Project[] = [
       { label: "Language", value: "English" },
       { label: "Partners", value: "Marula Proteen Ltd" },
       { label: "Runtime", value: "20 mins" },
-      { label: "Status", value: "Post-Production" },
+      { label: "Status", value: "Completed" },
     ],
   },
   {
@@ -376,14 +376,14 @@ export const projects: Project[] = [
     title: "Worldview Seaweed",
     shortTitle: "Worldview Seaweed",
     yearLabel: "2023",
-    status: "post-production",
-    statusLabel: "[Post-Production]",
+    status: "completed",
+    statusLabel: "[Completed]",
     runtime: "20 mins",
     synopsis:
       "Coastal Thailand: seaweed farming, the Worldview Climate Foundation, and communities balancing tradition with a changing ocean—and what cultivation means for livelihoods and ecology.",
     country: "Thailand",
     logline:
-      "On the Thai coast, seaweed farming bridges tradition and a warming sea—livelihood, resilience, and balance in the shallows.",
+      "A story of seaweed, sustainability, and CO₂ mitigation through a collaborative pilot uniting public and private sectors with Thai coastal communities.",
     spriteIndex: 7,
     coverImage: "/covers/worldview-seaweed-cover.png",
     posterImage: "/posters/worldview-seaweed-poster.png",
@@ -405,7 +405,7 @@ export const projects: Project[] = [
     ],
     credits: [
       { label: "Director–Editor", value: "Lewis Levent" },
-      { label: "Producer", value: "Dr Arne Fjortoft" },
+      { label: "Producer", value: "Dr Arne Fjørtoft" },
       { label: "Executive Producer", value: "Julian Oliver" },
       { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2023" },
@@ -415,7 +415,7 @@ export const projects: Project[] = [
         label: "Partners",
         value: "Worldview International Foundation",
       },
-      { label: "Status", value: "Post-Production" },
+      { label: "Status", value: "Completed" },
     ],
   },
 ];

@@ -132,20 +132,23 @@ export function DirectorGallery({
     updateScrollState();
   };
 
+  const compactItemClass =
+    "w-[calc(100cqw-0.25rem)] max-w-[11rem] shrink-0 snap-start sm:max-w-[12rem] md:max-w-[18rem] lg:w-[calc((100%-1.5rem)/3)] lg:min-w-[calc((100%-1.5rem)/3)] lg:max-w-none";
+
   return (
-    <section className={compact ? "mt-5" : "mt-12 md:mt-14"}>
-      <div className="flex items-center justify-between gap-4">
-        <p className="text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-stone-500">
+    <section className={compact ? "mt-4 min-w-0 md:mt-5" : "mt-12 min-w-0 md:mt-14"}>
+      <div className="flex min-w-0 items-center justify-between gap-3 sm:gap-4">
+        <p className="min-w-0 truncate text-[0.58rem] font-semibold uppercase tracking-[0.22em] text-stone-500 md:text-[0.62rem]">
           {title}
         </p>
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
           <button
             type="button"
             onClick={() => scrollByPage("left")}
             disabled={!canScrollLeft}
             aria-label="Scroll gallery left"
             className={`tap-target inline-flex items-center justify-center border border-stone-800/80 text-sm text-stone-300 transition hover:border-stone-600 hover:text-stone-100 disabled:cursor-not-allowed disabled:border-stone-900 disabled:text-stone-700 ${
-              compact ? "h-11 w-11" : "h-11 w-11 md:h-9 md:w-9"
+              compact ? "h-9 w-9 md:h-11 md:w-11" : "h-11 w-11 md:h-9 md:w-9"
             }`}
           >
             ←
@@ -156,7 +159,7 @@ export function DirectorGallery({
             disabled={!canScrollRight}
             aria-label="Scroll gallery right"
             className={`tap-target inline-flex items-center justify-center border border-stone-800/80 text-sm text-stone-300 transition hover:border-stone-600 hover:text-stone-100 disabled:cursor-not-allowed disabled:border-stone-900 disabled:text-stone-700 ${
-              compact ? "h-11 w-11" : "h-11 w-11 md:h-9 md:w-9"
+              compact ? "h-9 w-9 md:h-11 md:w-11" : "h-11 w-11 md:h-9 md:w-9"
             }`}
           >
             →
@@ -164,7 +167,9 @@ export function DirectorGallery({
         </div>
       </div>
 
-      <div className={compact ? "relative mt-3.5" : "relative mt-5"}>
+      <div
+        className={`min-w-0 ${compact ? "relative mt-3.5 @container/director-profile" : "relative mt-5"}`}
+      >
         <div
           ref={trackRef}
           onScroll={updateScrollState}
@@ -173,13 +178,13 @@ export function DirectorGallery({
           onMouseUp={handleDragEnd}
           onMouseLeave={handleDragEnd}
           onDragStart={(event) => event.preventDefault()}
-          className={`overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [touch-action:pan-x] [&::-webkit-scrollbar]:hidden ${
+          className={`min-w-0 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [touch-action:pan-x] [&::-webkit-scrollbar]:hidden ${
             isDragging ? "cursor-grabbing select-none" : "cursor-grab"
           }`}
         >
           <ul
             className={`flex snap-x snap-mandatory ${
-              compact ? "gap-2.5 md:gap-3" : "gap-3 md:gap-4"
+              compact ? "gap-2 md:gap-2.5 lg:gap-3" : "gap-3 md:gap-4"
             }`}
           >
             {images.map((image, index) => (
@@ -187,8 +192,8 @@ export function DirectorGallery({
                 key={image}
                 className={
                   compact
-                    ? "w-[74vw] min-w-[14rem] max-w-[18rem] snap-start md:w-[calc((100%-1.5rem)/3)] md:min-w-[calc((100%-1.5rem)/3)] md:max-w-none"
-                    : "w-[78vw] min-w-[15rem] max-w-[19rem] snap-start md:w-[22rem] md:min-w-[22rem] md:max-w-[22rem]"
+                    ? compactItemClass
+                    : "w-[min(78vw,100%)] max-w-[19rem] shrink-0 snap-start sm:max-w-[17rem] md:w-[22rem] md:max-w-[22rem]"
                 }
               >
                 <button
@@ -197,7 +202,11 @@ export function DirectorGallery({
                   aria-label={`View director on location photo ${index + 1} full screen`}
                   className="group tap-target block w-full min-h-0 text-left"
                 >
-                  <figure className="relative aspect-[4/3] overflow-hidden bg-stone-950 ring-1 ring-stone-800/70 transition-[box-shadow,ring-color] duration-500 group-hover:ring-[#e9a31a]/35">
+                  <figure
+                    className={`relative aspect-[4/3] overflow-hidden bg-stone-950 ring-1 ring-stone-800/70 transition-[box-shadow,ring-color] duration-500 group-hover:ring-[#e9a31a]/35${
+                      compact ? " max-md:aspect-[3/2]" : ""
+                    }`}
+                  >
                     <Image
                       src={image}
                       alt={`Director on location ${index + 1}`}
@@ -206,8 +215,8 @@ export function DirectorGallery({
                       className="object-cover transition duration-[1.1s] ease-out group-hover:scale-[1.04] group-hover:brightness-[1.08]"
                       sizes={
                         compact
-                          ? "(min-width: 768px) 12vw, 74vw"
-                          : "(min-width: 768px) 22rem, 78vw"
+                          ? "(min-width: 1024px) 12vw, (min-width: 768px) 50vw, 11rem"
+                          : "(min-width: 768px) 22rem, min(78vw, 100%)"
                       }
                     />
                   </figure>

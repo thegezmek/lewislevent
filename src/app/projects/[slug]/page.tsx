@@ -173,14 +173,6 @@ export default async function ProjectPage({ params }: Props) {
                   />
                 </div>
               ) : null}
-              <a
-                href={project.trailerUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ember-underline tap-target mt-5 inline-flex items-center text-xs font-semibold uppercase tracking-[0.2em] text-stone-400 sm:text-[0.7rem]"
-              >
-                Watch on Vimeo
-              </a>
             </section>
           ) : null}
         </article>
