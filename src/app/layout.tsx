@@ -1,10 +1,38 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+const siteDescription = "Directorial debut collection (2021–2026).";
+
+const metadataBase =
+  process.env.NEXT_PUBLIC_SITE_URL != null
+    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
+    : process.env.VERCEL_URL != null
+      ? new URL(`https://${process.env.VERCEL_URL}`)
+      : undefined;
+
 export const metadata: Metadata = {
+  ...(metadataBase != null ? { metadataBase } : {}),
   title: "Lewis Levent — Director",
-  description:
-    "Directorial debut collection (2021–2026). Cinematic, minimal, land-rooted storytelling.",
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    title: "Lewis Levent — Director",
+    description: siteDescription,
+    images: [
+      {
+        url: "/images/og-cover.jpg",
+        width: 747,
+        height: 853,
+        alt: "Lewis Levent — Director",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lewis Levent — Director",
+    description: siteDescription,
+    images: ["/images/og-cover.jpg"],
+  },
 };
 
 export const viewport: Viewport = {
