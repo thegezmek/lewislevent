@@ -128,6 +128,12 @@ const PARTNER_LOGOS = [
     href: "https://voteearth.org/",
   },
 ] as const;
+
+const PARTNER_LOGO_HEIGHTS: Partial<Record<(typeof PARTNER_LOGOS)[number]["src"], string>> = {
+  "/partners/meta.png": "h-11 sm:h-12",
+  "/partners/university-of-nairobi.png": "h-11 sm:h-12",
+};
+
 function chunkFilms<T>(items: T[], size: number): T[][] {
   const blocks: T[][] = [];
   for (let i = 0; i < items.length; i += size) {
@@ -384,9 +390,7 @@ export default function Home() {
                   >
                     <div
                       className={`relative w-full ${
-                        logo.src === "/partners/meta.png"
-                          ? "h-11 sm:h-12"
-                          : "h-10 sm:h-11"
+                        PARTNER_LOGO_HEIGHTS[logo.src] ?? "h-10 sm:h-11"
                       }`}
                     >
                       <Image
