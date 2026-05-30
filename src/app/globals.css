@@ -19,6 +19,13 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  scroll-padding-top: calc(3.75rem + env(safe-area-inset-top, 0px));
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: calc(4.75rem + env(safe-area-inset-top, 0px));
+  }
 }
 
 *,
@@ -31,6 +38,66 @@ html {
   html {
     scroll-behavior: auto;
   }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal,
+  .reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 1.25rem, 0);
+    transition:
+      opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+  }
+
+  @media (min-width: 768px) {
+    .reveal {
+      transform: translate3d(0, 0.65rem, 0);
+      transition-duration: 0.75s;
+    }
+  }
+
+  .reveal-stagger > .reveal-item {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+    transition:
+      opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--reveal-i, 0) * 70ms + var(--reveal-delay, 0ms));
+  }
+
+  .reveal-stagger.is-visible > .reveal-item {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @media (min-width: 768px) {
+    .reveal-stagger > .reveal-item {
+      transform: translate3d(0, 0.5rem, 0);
+      transition-delay: calc(var(--reveal-i, 0) * 45ms + var(--reveal-delay, 0ms));
+    }
+  }
 }
 
 body {
@@ -41,6 +108,7 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Minimum 44×44px touch target for interactive controls */
@@ -52,6 +120,114 @@ a.tap-target,
 button.tap-target {
   min-height: 2.75rem;
   min-width: 2.75rem;
+}
+
+/* Collection cards — subtle press feedback on touch */
+@media (hover: none) and (prefers-reduced-motion: no-preference) {
+  .collection-card-media {
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.45s ease,
+      filter 0.45s ease;
+  }
+
+  .collection-card:active .collection-card-media {
+    transform: scale(0.985);
+  }
+}
+
+/* Horizontal gallery — mobile scroll feel */
+.gallery-track {
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 0.75rem;
+  overscroll-behavior-x: contain;
+}
+
+@media (min-width: 768px) {
+  .gallery-track {
+    scroll-padding-inline: 0;
+  }
+}
+
+.gallery-track > li {
+  scroll-snap-stop: always;
+}
+
+.gallery-fade {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 1.25rem,
+    #000 calc(100% - 1.25rem),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 1.25rem,
+    #000 calc(100% - 1.25rem),
+    transparent
+  );
+}
+
+@media (min-width: 768px) {
+  .gallery-fade {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+/* Partners grid — 3 cols mobile, 9 cols desktop */
+.partners-grid {
+  align-items: stretch;
+}
+
+.partners-grid > li {
+  display: flex;
+  min-height: 3.25rem;
+  min-width: 0;
+}
+
+.partners-grid > li > a {
+  align-items: center;
+  justify-content: center;
+}
+
+.partners-grid .partner-logo-frame {
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .partners-grid > li {
+    min-height: 3.5rem;
+  }
+}
+
+/* Sticky header scroll state */
+.site-header {
+  transition:
+    background-color 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease,
+    backdrop-filter 0.45s ease;
+}
+
+.site-header.is-scrolled {
+  background-color: rgba(10, 10, 10, 0.96);
+  border-color: rgba(41, 37, 36, 0.55);
+  box-shadow: 0 10px 32px -18px rgba(0, 0, 0, 0.75);
+}
+
+@media (max-width: 767px) {
+  .site-header.is-scrolled .site-header-inner {
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+  }
+}
+
+.site-header-inner {
+  transition: padding 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Subtle film grain */

@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import { createPortal } from "react-dom";
 
 type DirectorGalleryProps = {
@@ -26,6 +32,7 @@ export function DirectorGallery({
   const dragStartXRef = useRef(0);
   const dragStartScrollRef = useRef(0);
   const didDragRef = useRef(false);
+  const activePointerRef = useRef<number | null>(null);
 
   const updateScrollState = useCallback(() => {
     const track = trackRef.current;
@@ -98,27 +105,34 @@ export function DirectorGallery({
     const track = trackRef.current;
     if (!track) return;
 
-    const amount = Math.round(track.clientWidth * 0.9);
+    const slide =
+      track.querySelector<HTMLElement>("li")?.offsetWidth ?? track.clientWidth;
+    const amount = Math.round(slide + 12);
     track.scrollBy({
       left: direction === "left" ? -amount : amount,
       behavior: "smooth",
     });
   };
 
-  const handleDragStart = (event: MouseEvent<HTMLDivElement>) => {
-    if (event.button !== 0) return;
+  const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "touch") return;
+    if (event.pointerType === "mouse" && event.button !== 0) return;
     const track = trackRef.current;
     if (!track) return;
+
+    activePointerRef.current = event.pointerId;
+    track.setPointerCapture(event.pointerId);
     setIsDragging(true);
     didDragRef.current = false;
     dragStartXRef.current = event.clientX;
     dragStartScrollRef.current = track.scrollLeft;
   };
 
-  const handleDragMove = (event: MouseEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
+  const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (!isDragging || activePointerRef.current !== event.pointerId) return;
     const track = trackRef.current;
     if (!track) return;
+
     const distance = event.clientX - dragStartXRef.current;
     if (Math.abs(distance) > DRAG_CLICK_THRESHOLD) {
       didDragRef.current = true;
@@ -126,8 +140,13 @@ export function DirectorGallery({
     track.scrollLeft = dragStartScrollRef.current - distance;
   };
 
-  const handleDragEnd = () => {
-    if (!isDragging) return;
+  const handlePointerEnd = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (activePointerRef.current !== event.pointerId) return;
+    const track = trackRef.current;
+    if (track?.hasPointerCapture(event.pointerId)) {
+      track.releasePointerCapture(event.pointerId);
+    }
+    activePointerRef.current = null;
     setIsDragging(false);
     updateScrollState();
   };
@@ -168,17 +187,17 @@ export function DirectorGallery({
       </div>
 
       <div
-        className={`min-w-0 ${compact ? "relative mt-3.5 @container/director-profile" : "relative mt-5"}`}
+        className={`gallery-fade min-w-0 ${compact ? "relative mt-3.5 @container/director-profile" : "relative mt-5"}`}
       >
         <div
           ref={trackRef}
           onScroll={updateScrollState}
-          onMouseDown={handleDragStart}
-          onMouseMove={handleDragMove}
-          onMouseUp={handleDragEnd}
-          onMouseLeave={handleDragEnd}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerEnd}
+          onPointerCancel={handlePointerEnd}
           onDragStart={(event) => event.preventDefault()}
-          className={`min-w-0 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [touch-action:pan-x] [&::-webkit-scrollbar]:hidden ${
+          className={`gallery-track min-w-0 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [touch-action:pan-x] [&::-webkit-scrollbar]:hidden ${
             isDragging ? "cursor-grabbing select-none" : "cursor-grab"
           }`}
         >
