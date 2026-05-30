@@ -374,19 +374,26 @@ export default function Home() {
               {PARTNER_LOGOS.map((logo) => (
                 <li
                   key={logo.src}
-                  className="border border-stone-900/80 bg-[#0a0a0a]"
+                  className="border border-stone-800/80 bg-transparent"
                 >
                   <a
                     href={logo.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="tap-target flex min-h-[3.25rem] items-center justify-center px-3 py-4 transition-colors hover:bg-stone-900/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e9a31a]/50"
+                    className="tap-target flex min-h-[3.5rem] items-center justify-center px-2.5 py-4 transition-colors hover:bg-stone-900/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e9a31a]/50"
                   >
-                    <div className="relative h-9 w-full sm:h-10">
+                    <div
+                      className={`relative w-full ${
+                        logo.src === "/partners/meta.png"
+                          ? "h-11 sm:h-12"
+                          : "h-10 sm:h-11"
+                      }`}
+                    >
                       <Image
                         src={logo.src}
                         alt={logo.alt}
                         fill
+                        unoptimized
                         className="object-contain"
                         sizes="(min-width: 1024px) 7vw, (min-width: 768px) 12vw, 30vw"
                       />
