@@ -20,10 +20,16 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
+        url: "/images/og-cover-landscape.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Lewis Levent on location during documentary production",
+      },
+      {
         url: "/images/og-cover.jpg",
-        width: 747,
-        height: 853,
-        alt: "Lewis Levent — Director",
+        width: 1200,
+        height: 1200,
+        alt: "Lewis Levent on location during documentary production",
       },
     ],
   },
@@ -31,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lewis Levent — Director",
     description: siteDescription,
-    images: ["/images/og-cover.jpg"],
+    images: ["/images/og-cover-landscape.jpg"],
   },
   icons: {
     icon: [
