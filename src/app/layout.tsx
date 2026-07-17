@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const siteDescription = "Directorial debut collection (2021–2026).";
+const siteDescription =
+  "British-Turkish documentary director. Eight films from a changing world, shot on the ground across Türkiye, East Africa, India and Southeast Asia.";
 const siteUrl = "https://lewislevent.com";
 
 const metadataBase = new URL(
