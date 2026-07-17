@@ -17,19 +17,28 @@ type ScrollRevealProps = {
   delay?: number;
   /** Stagger children that use `.reveal-item` */
   stagger?: boolean;
+  /** Show immediately (above-the-fold / first paint) */
+  immediate?: boolean;
   style?: CSSProperties;
 };
 
 let sharedObserver: IntersectionObserver | null = null;
 
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function isNearViewport(node: HTMLElement) {
+  const rect = node.getBoundingClientRect();
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+  // Reveal once any part is within ~1 viewport below the fold
+  return rect.top < vh * 1.15 && rect.bottom > -vh * 0.1;
+}
+
 function getObserver() {
   if (typeof window === "undefined") return null;
 
   if (!sharedObserver) {
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
     sharedObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -40,8 +49,9 @@ function getObserver() {
       },
       {
         root: null,
-        rootMargin: prefersReduced ? "0px" : "0px 0px -6% 0px",
-        threshold: prefersReduced ? 0 : 0.12,
+        // Expand detection so near-fold content reveals without extra scroll
+        rootMargin: "12% 0px 28% 0px",
+        threshold: 0.01,
       },
     );
   }
@@ -55,6 +65,7 @@ export function ScrollReveal({
   as: Tag = "div",
   delay = 0,
   stagger = false,
+  immediate = false,
   style,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLElement>(null);
@@ -63,11 +74,7 @@ export function ScrollReveal({
     const node = ref.current;
     if (!node) return;
 
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (reduced) {
+    if (prefersReducedMotion() || immediate || isNearViewport(node)) {
       node.classList.add("is-visible");
       return;
     }
@@ -77,13 +84,13 @@ export function ScrollReveal({
 
     observer.observe(node);
     return () => observer.unobserve(node);
-  }, []);
+  }, [immediate]);
 
   return createElement(
     Tag,
     {
       ref,
-      className: `reveal${stagger ? " reveal-stagger" : ""} ${className}`.trim(),
+      className: `reveal${stagger ? " reveal-stagger" : ""}${immediate ? " is-visible" : ""} ${className}`.trim(),
       style: {
         ...style,
         ...(delay > 0 ? { "--reveal-delay": `${delay}ms` } : undefined),

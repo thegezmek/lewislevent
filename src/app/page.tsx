@@ -192,8 +192,8 @@ export default function Home() {
       <main className="bg-[#0a0a0a] pt-[calc(3.75rem+env(safe-area-inset-top,0px))] md:pt-[calc(4.75rem+env(safe-area-inset-top,0px))]">
         {/* Manifesto (Top Copy) */}
         <section className="bg-[#0a0a0a]/95">
-          <div className="mx-auto max-w-6xl px-4 pb-10 pt-12 sm:px-6 sm:pb-12 sm:pt-16 md:px-10 md:pb-12 md:pt-20">
-            <ScrollReveal>
+          <div className="mx-auto max-w-6xl px-4 pb-6 pt-8 sm:px-6 sm:pb-10 sm:pt-14 md:px-10 md:pb-12 md:pt-20">
+            <ScrollReveal immediate>
               <h2 className="max-w-3xl text-2xl font-semibold tracking-[-0.03em] text-stone-100 sm:text-3xl md:text-4xl">
                 A slate of documentary films exploring environmental resilience
                 and social transformation.
@@ -210,8 +210,8 @@ export default function Home() {
           id="collection"
           className="scroll-mt-[5.5rem] bg-[#0a0a0a] sm:scroll-mt-24"
         >
-          <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 md:px-10 md:py-20">
-            <ScrollReveal>
+          <div className="mx-auto max-w-6xl px-4 pb-14 pt-6 sm:px-6 sm:py-16 md:px-10 md:py-20">
+            <ScrollReveal immediate>
               <div>
                 <p className="text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-stone-500">
                   Collection story
@@ -222,11 +222,12 @@ export default function Home() {
               </div>
             </ScrollReveal>
 
-            <div className="mt-10 md:mt-12">
+            <div className="mt-6 md:mt-12">
               {chunkFilms(projects, FILMS_PER_BLOCK).map((block, blockIndex) => (
                 <ScrollReveal
                   key={blockIndex}
                   stagger
+                  immediate={blockIndex === 0}
                   className={blockIndex > 0 ? "mt-12 md:mt-14" : undefined}
                   delay={blockIndex > 0 ? 80 : 0}
                 >
