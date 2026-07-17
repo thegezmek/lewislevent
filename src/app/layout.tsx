@@ -2,20 +2,23 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 const siteDescription = "Directorial debut collection (2021–2026).";
+const siteUrl = "https://lewislevent.com";
 
-const metadataBase =
-  process.env.NEXT_PUBLIC_SITE_URL != null
-    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
-    : process.env.VERCEL_URL != null
-      ? new URL(`https://${process.env.VERCEL_URL}`)
-      : undefined;
+const metadataBase = new URL(
+  process.env.NEXT_PUBLIC_SITE_URL ?? siteUrl,
+);
 
 export const metadata: Metadata = {
-  ...(metadataBase != null ? { metadataBase } : {}),
+  metadataBase,
   title: "Lewis Levent — Director",
   description: siteDescription,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
+    url: siteUrl,
+    siteName: "Lewis Levent",
     title: "Lewis Levent — Director",
     description: siteDescription,
     images: [
