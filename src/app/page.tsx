@@ -308,10 +308,10 @@ export default function Home() {
                     Editorial Focus
                   </p>
                   <p className="max-w-xl text-base leading-relaxed text-stone-400 sm:text-lg">
-                    These films trace the systems shaping land, livelihood, and
-                    movement across diverse regions, following communities and
-                    individuals as they respond to disruption and navigate
-                    long-term change.
+                    Eight films from a changing world. Shot on the ground across
+                    Türkiye, East Africa, India and Southeast Asia, they
+                    document global systems change through the communities and
+                    organisations working to build resilience.
                   </p>
                 </div>
               </ScrollReveal>
