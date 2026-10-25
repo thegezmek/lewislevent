@@ -1,5 +1,5 @@
 type CollectionThumbProps = {
-  spriteIndex: number;
+  spriteIndex?: number;
   alt: string;
   className?: string;
   coverImage?: string;
@@ -13,7 +13,7 @@ const GRID_Y_END = 92;
 
 /** Background slice from `/collection-overview.png` (2×4 grid). */
 export function CollectionThumb({
-  spriteIndex,
+  spriteIndex = 0,
   alt,
   className = "",
   coverImage,

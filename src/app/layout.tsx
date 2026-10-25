@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { fullName, roleLine, siteDescription, siteUrl } from "@/data/bio";
 
-const siteDescription =
-  "British-Turkish documentary director. Eight films from a changing world, shot on the ground across Türkiye, East Africa, India and Southeast Asia.";
-const siteUrl = "https://lewislevent.com";
+const siteTitle = `${fullName} \u2014 ${roleLine}, Barcelona`;
 
 const metadataBase = new URL(
   process.env.NEXT_PUBLIC_SITE_URL ?? siteUrl,
@@ -11,7 +10,10 @@ const metadataBase = new URL(
 
 export const metadata: Metadata = {
   metadataBase,
-  title: "Lewis Levent — Director",
+  title: {
+    default: siteTitle,
+    template: `%s \u2014 ${fullName}`,
+  },
   description: siteDescription,
   alternates: {
     canonical: "/",
@@ -19,8 +21,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: siteUrl,
-    siteName: "Lewis Levent",
-    title: "Lewis Levent — Director",
+    siteName: fullName,
+    title: siteTitle,
     description: siteDescription,
     images: [
       {
@@ -39,7 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lewis Levent — Director",
+    title: siteTitle,
     description: siteDescription,
     images: ["/images/og-cover-landscape-v2.jpg"],
   },

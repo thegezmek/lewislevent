@@ -7,6 +7,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { getProjectBySlug, projects } from "@/data/projects";
+import { vimeoEmbedSrc } from "@/lib/vimeo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -18,10 +19,12 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return {};
+  // The root layout appends "— Lewis Levent" through the title template.
   return {
-    title: `${project.title} — Lewis Levent`,
+    title: project.title,
     description:
       project.synopsisParagraphs?.[0] ?? project.synopsis,
+    alternates: { canonical: `/projects/${slug}` },
   };
 }
 
@@ -34,14 +37,7 @@ export default async function ProjectPage({ params }: Props) {
   const sheetParagraphs = project.synopsisParagraphs ?? [];
   const sheetCredits = project.credits ?? [];
   const hasSheet = sheetParagraphs.length > 0 && sheetCredits.length > 0;
-  const trailerMatch = project.trailerUrl?.match(
-    /vimeo\.com\/(\d+)(?:\/([A-Za-z0-9]+))?/,
-  );
-  const trailerEmbedUrl = trailerMatch
-    ? trailerMatch[2]
-      ? `https://player.vimeo.com/video/${trailerMatch[1]}?h=${trailerMatch[2]}`
-      : `https://player.vimeo.com/video/${trailerMatch[1]}`
-    : undefined;
+  const trailerEmbedUrl = vimeoEmbedSrc(project.trailerUrl);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#e8e4df]">
@@ -49,10 +45,10 @@ export default async function ProjectPage({ params }: Props) {
       <main className="pt-[calc(3.75rem+env(safe-area-inset-top,0px))] md:pt-[calc(4.75rem+env(safe-area-inset-top,0px))]">
         <article className="mx-auto max-w-6xl px-4 pb-20 pt-8 sm:px-6 sm:pb-24 sm:pt-12 md:px-10 md:pb-32 md:pt-16">
           <Link
-            href="/#collection"
+            href="/"
             className="ember-underline tap-target -ml-1 inline-flex min-h-11 items-center px-1 text-xs font-semibold uppercase tracking-[0.2em] text-stone-500 sm:text-[0.65rem]"
           >
-            ← Collection
+            ← Home
           </Link>
 
           <ScrollReveal>
@@ -142,6 +138,42 @@ export default async function ProjectPage({ params }: Props) {
               </div>
             </ScrollReveal>
           )}
+
+          {project.partners?.length ? (
+            <ScrollReveal delay={80} className="mt-10 md:mt-12">
+              <section>
+                <p className="mb-5 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-[#e9a31a] md:mb-6">
+                  Partners
+                </p>
+                <ul className="grid grid-cols-3 gap-2.5 sm:gap-3 md:grid-cols-6 md:gap-3">
+                  {project.partners.map((logo) => (
+                    <li
+                      key={logo.src}
+                      className="flex border border-stone-800/80 bg-transparent"
+                    >
+                      <a
+                        href={logo.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="tap-target flex h-full w-full min-h-[3.25rem] items-center justify-center px-1.5 py-2 sm:min-h-[3.5rem]"
+                      >
+                        <span className="relative h-9 w-full md:h-10">
+                          <Image
+                            src={logo.src}
+                            alt={logo.alt}
+                            fill
+                            unoptimized
+                            className="object-contain object-center"
+                            sizes="140px"
+                          />
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </ScrollReveal>
+          ) : null}
 
           {project.stillImages?.length ? (
             <ScrollReveal stagger delay={80} className="mt-10 md:mt-12">

@@ -31,7 +31,7 @@ function prefersReducedMotion() {
 function isNearViewport(node: HTMLElement) {
   const rect = node.getBoundingClientRect();
   const vh = window.innerHeight || document.documentElement.clientHeight;
-  // Reveal once any part is within ~1 viewport below the fold
+  // Reveal once any portion is within ~1 viewport below the fold
   return rect.top < vh * 1.15 && rect.bottom > -vh * 0.1;
 }
 

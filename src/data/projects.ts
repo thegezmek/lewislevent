@@ -5,6 +5,12 @@ export type ProjectCredit = {
   value: string;
 };
 
+export type ProjectPartner = {
+  src: string;
+  alt: string;
+  href: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -18,10 +24,19 @@ export type Project = {
   country: string;
   /** One-sentence hook on collection cards (under country). */
   logline: string;
-  /** Index 0–7 in the 2×4 collection overview sprite (left→right, top→bottom). */
-  spriteIndex: number;
+  /** Homepage strip title (uppercase display). */
+  stripTitle: string;
+  /** Homepage strip paragraph. */
+  stripText: string;
+  /** Index 0–7 in the 2×4 collection overview sprite (left→right, top→bottom).
+   *  Omitted for films outside that eight-film grid, which supply `coverImage` instead. */
+  spriteIndex?: number;
   /** Optional custom cover used on home + project hero. */
   coverImage?: string;
+  /** Optional silent loop played behind the stage while this film is selected. */
+  reelVideo?: string;
+  /** First frame of `reelVideo`, shown while it buffers. */
+  reelPoster?: string;
   /** Optional dedicated poster art (e.g. editorial focus row on home). */
   posterImage?: string;
   /** Optional gallery shown at the bottom of project page. */
@@ -35,24 +50,31 @@ export type Project = {
   /** Long-form synopsis paragraphs; when set, project page uses two-column sheet layout. */
   synopsisParagraphs?: string[];
   credits?: ProjectCredit[];
+  partners?: ProjectPartner[];
+  fromAshesUrl?: string;
 };
 
 export const projects: Project[] = [
   {
     slug: "from-ashes-i-land-of-the-honey-bug",
-    title: "From Ashes Part I: Land of the Honey Bug",
-    shortTitle: "From Ashes I: Land of the Honey Bug",
+    title: "From Ashes, Episode 1: Land of the Honey Bug",
+    shortTitle: "From Ashes 1: Land of the Honey Bug",
     yearLabel: "2021 – 2025",
     status: "completed",
     statusLabel: "[Completed]",
     runtime: "73 mins",
     synopsis:
-      "Two months after the 2021 wildfires, an elderly beekeeper returns to Muğla—ash, pine honey, and the honey bug at the heart of a tradition in flux.",
+      "After the fires, a beekeeper returns to a vanished forest. As the fragile ecology behind pine honey begins to unravel, the relationship between honey bee, \"honey bug\" and forest holds the future of an ancient beekeeping tradition. A community searches for a way forward in a landscape that no longer sustains them.",
     country: "Türkiye",
     logline:
-      "After Türkiye’s 2021 wildfires, an elderly beekeeper returns to his devastated village as a pine honey community struggles to preserve an ancient way of life.",
+      "After the fires, a beekeeper returns to a vanished forest and an ancient tradition facing an uncertain future.",
+    stripTitle: "FROM ASHES — EPISODE 1: LAND OF THE HONEY BUG",
+    stripText:
+      "Two months after Türkiye's 2021 wildfires, Hüseyin walks through his village in Muğla, where his home and the surrounding pine forests have been reduced to ash. These forests sustained an ancient beekeeping tradition, rooted in the relationship between honey bee, \"honey bug\" and pine tree. The honey bug, a small insect dwelling on pine trees and found almost nowhere else on Earth, lies at the heart of pine honey production. Land of the Honey Bug follows a community searching for continuity in a landscape that may no longer sustain them.",
     spriteIndex: 0,
     coverImage: "/covers/from-ashes-i-cover.png",
+    reelVideo: "/showreel/from-ashes-i.mp4",
+    reelPoster: "/showreel/from-ashes-i-poster.jpg",
     stillImages: [
       "/stills/from-ashes-i/new-01.png",
       "/stills/from-ashes-i/new-02.png",
@@ -65,44 +87,77 @@ export const projects: Project[] = [
       "/stills/from-ashes-i/new-09.png",
     ],
     trailerUrl: "https://vimeo.com/1099954712/8103f5b26c?share=copy",
-    titleKicker: "From Ashes Part I:",
+    titleKicker: "From Ashes — Episode 1",
     titleHeadline: "Land of the Honey Bug",
+    fromAshesUrl: "https://fromashes.film",
     synopsisParagraphs: [
-      "Two months after the 2021 wildfires, Hüseyin, an elderly beekeeper, walks through his village in Muğla, where his home and the surrounding pine forests that sustained an ancient beekeeping tradition have been reduced to ash.",
-      "His return becomes an entry point into a community reckoning with what has been lost, as pine honey producers search for continuity in a landscape that no longer functions as it once did.",
-      "What now defines the future of their age-old practice is what locals call the honey bug, a small forest insect found almost nowhere else on Earth, upon which the entire pine honey system depends.",
-      "As beekeepers confront the fragility of this relationship, their story opens onto a wider reality, revealing how human actions, ecological imbalance, and a warming climate are reshaping the forests they depend on, and the future of a tradition that hangs in the balance.",
+      "Two months after Türkiye's 2021 wildfires, Hüseyin walks through his village in Muğla, where his home and the surrounding pine forests have been reduced to ash. These forests sustained an ancient beekeeping tradition, rooted in the relationship between honey bee, \"honey bug\" and pine tree.",
+      "The honey bug, a small insect dwelling on pine trees and found almost nowhere else on Earth, lies at the heart of pine honey production.",
+      "Land of the Honey Bug follows a community searching for continuity in a landscape that may no longer sustain them. Their search unfolds amid a warming climate, the pressures of human activity and an increasingly charged public response to the fires.",
     ],
     credits: [
       { label: "Director–Editor", value: "Lewis Levent" },
-      {
-        label: "Producers",
-        value: "Lewis Levent, İlkay Bilgiç, Canay Atalay",
-      },
+      { label: "Producers", value: "İlkay Bilgiç, Lewis Levent" },
+      { label: "Impact Producer", value: "Canay Atalay" },
       { label: "Executive Producer", value: "Julian Oliver" },
-      { label: "Production Company", value: "Gez Studio" },
+      { label: "Post-Production Supervisor", value: "Selçuk Demirci" },
+      { label: "Original Music", value: "İlker Yurtcan" },
+      { label: "Sound Post-Production", value: "Anthony Croft" },
+      { label: "Motion Design", value: "Ezgi Lemur" },
+      {
+        label: "Additional Camera",
+        value: "Gabriel Fenner (2021), Sefa Zaman (2023)",
+      },
+      { label: "Production Company", value: "Gez Studio Ltd" },
       { label: "Year", value: "2021–2025" },
       { label: "Country", value: "Türkiye" },
       { label: "Language", value: "Turkish, English" },
       { label: "Runtime", value: "73 mins" },
       { label: "Status", value: "Completed" },
     ],
+    partners: [
+      {
+        src: "/partners/project-honeylight.png",
+        alt: "Project Honeylight",
+        href: "https://projecthoneylight.life/",
+      },
+      {
+        src: "/partners/mugla-sitki-kocman-university.png",
+        alt: "Mugla Sitki Kocman University",
+        href: "https://www.mu.edu.tr/",
+      },
+      {
+        src: "/partners/istanbul-university-cerrahpasa.png",
+        alt: "Istanbul University-Cerrahpasa",
+        href: "https://www.iuc.edu.tr/en/",
+      },
+      {
+        src: "/partners/turkiye-ari-yetistiricileri-merkez-birligi.png",
+        alt: "Türkiye Arı Yetiştiricileri Merkez Birliği",
+        href: "https://www.tab.org.tr/",
+      },
+    ],
   },
   {
     slug: "from-ashes-ii-the-mountainside-of-ormana",
-    title: "From Ashes Part II: The Mountainside of Ormana",
-    shortTitle: "From Ashes II: The Mountainside of Ormana",
+    title: "From Ashes, Episode 2: The Mountainside of Ormana",
+    shortTitle: "From Ashes 2: The Mountainside of Ormana",
     yearLabel: "2021 – 2025",
     status: "completed",
     statusLabel: "[Completed]",
     runtime: "55 mins",
     synopsis:
-      "Summer 2021: the Manavgat fire bears down on Ormana—residents face the flames with local knowledge and community action when support is out of reach.",
+      "In Ormana, an 800-year-old village in the Taurus mountains of Türkiye, life is bound to the surrounding forest. As wildfire closes in, residents turn to instinct, knowledge and each other in an effort to save their home.",
     country: "Türkiye",
     logline:
-      "During Türkiye’s 2021 wildfires, a mountain village in Manavgat confronts an advancing inferno, where community resilience becomes a frontline defence.",
+      "As wildfire approaches Ormana, a mountain community draws on its knowledge of the forest to protect their 800-year-old village.",
+    stripTitle: "FROM ASHES — EPISODE 2: THE MOUNTAINSIDE OF ORMANA",
+    stripText:
+      "In Ormana, an 800-year-old village in the Taurus mountains of Türkiye, life is bound to the surrounding forest. As wildfire closes in, residents turn to instinct, knowledge and each other in an effort to save their home.",
     spriteIndex: 1,
     coverImage: "/covers/from-ashes-ii-cover.png",
+    reelVideo: "/showreel/from-ashes-ii.mp4",
+    reelPoster: "/showreel/from-ashes-ii-poster.jpg",
     stillImages: [
       "/stills/from-ashes-ii/still-01.png",
       "/stills/from-ashes-ii/still-02.png",
@@ -115,22 +170,25 @@ export const projects: Project[] = [
       "/stills/from-ashes-ii/still-09.png",
     ],
     trailerUrl: "https://vimeo.com/1101667778/9933555489?share=copy",
-    titleKicker: "From Ashes Part II:",
+    titleKicker: "From Ashes — Episode 2",
     titleHeadline: "The Mountainside of Ormana",
+    fromAshesUrl: "https://fromashes.film",
     synopsisParagraphs: [
-      "As wildfires spread across Türkiye's Mediterranean region in the summer of 2021, the Manavgat fire advanced toward the mountain village of Ormana, placing it directly in its path.",
-      "Cut off from immediate support, residents were forced to make their own decisions as flames moved through the surrounding forests, drawing on local knowledge, instinct, and a deep familiarity with their landscape to protect their homes.",
-      "Their experience becomes an account of what it means to face wildfire at the moment of impact, revealing both the limits of institutional response and the critical role of community action in the absence of it.",
-      "Through their story, the film examines how fire is altering the conditions of life in fire-prone regions, and what adaptation demands of those living on the frontlines of a rapidly changing climate.",
+      "In Ormana, an 800-year-old village in the Taurus mountains of Türkiye, life is bound to the surrounding forest. During the 2021 wildfires, residents turn to instinct, knowledge and each other as fire descends towards their home.",
+      "The Mountainside of Ormana follows their effort to protect a way of life shaped by generations of familiarity with the land. Their response reveals the ties between people and place, where knowledge of the forest and reliance on one another become part of survival.",
+      "Through this community's experience, the film explores our relationship with the natural world, and what it means to belong to a landscape whose future is becoming uncertain.",
     ],
     credits: [
       { label: "Director–Editor", value: "Lewis Levent" },
-      {
-        label: "Producers",
-        value: "Lewis Levent, İlkay Bilgiç, Canay Atalay",
-      },
+      { label: "Producers", value: "İlkay Bilgiç, Lewis Levent" },
+      { label: "Impact Producer", value: "Canay Atalay" },
       { label: "Executive Producer", value: "Julian Oliver" },
-      { label: "Production Company", value: "Gez Studio" },
+      { label: "Post-Production Supervisor", value: "Selçuk Demirci" },
+      { label: "Original Music", value: "İlker Yurtcan" },
+      { label: "Sound Post-Production", value: "Anthony Croft" },
+      { label: "Motion Design", value: "Ezgi Lemur" },
+      { label: "Additional Camera", value: "Sefa Zaman (2023)" },
+      { label: "Production Company", value: "Gez Studio Ltd" },
       { label: "Year", value: "2021–2025" },
       { label: "Country", value: "Türkiye" },
       { label: "Language", value: "Turkish, English" },
@@ -151,6 +209,9 @@ export const projects: Project[] = [
     country: "Kenya, Rwanda",
     logline:
       "Across East Africa, farmers, scientists, and agricultural innovators seek to restore soil fertility and reduce dependence on chemical inputs.",
+    stripTitle: "KUZAYA",
+    stripText:
+      "In Homa Bay, on the shore of Lake Victoria, John Roche turns his community's organic waste into fertiliser. Across Kenya and Rwanda, farmers pay more for chemical inputs every season and harvest less. Kuzaya follows the farmers, scientists and companies working to bring the life back into the soil. On the way it asks a second question: what is the soil doing to our food, and to us?",
     spriteIndex: 2,
     coverImage: "/covers/kuzaya-cover.png",
     stillImages: [
@@ -200,8 +261,13 @@ export const projects: Project[] = [
     country: "India, Myanmar",
     logline:
       "On the Indo-Myanmar border, displaced Zo communities and their Indigenous hosts rebuild livelihoods together through agroforestry.",
+    stripTitle: "GREEN REFUGE",
+    stripText:
+      "Zo families fleeing the civil war in Myanmar cross into Mizoram, in Northeast India, without formal refugee status. They depend on the Indigenous communities who take them in, and neither side has much land, income or protection to spare. With Impulse NGO Network, displaced and host families start farming together, on agroforestry plots that grow food and restore degraded land. Green Refuge follows the project as it takes root, and what it asks of the people who receive refugees.",
     spriteIndex: 3,
     coverImage: "/stills/green-refuge/still-01.png",
+    reelVideo: "/showreel/green-refuge.mp4",
+    reelPoster: "/showreel/green-refuge-poster.jpg",
     stillImages: [
       "/stills/green-refuge/still-02.png",
       "/stills/green-refuge/still-03.png",
@@ -214,9 +280,8 @@ export const projects: Project[] = [
       "/stills/green-refuge/still-10.png",
     ],
     synopsisParagraphs: [
-      "As Zo communities flee violence across the Myanmar border into Northeast India, they arrive without formal recognition as refugees, leaving them in a state of legal and economic vulnerability, dependent on the Indigenous ethnic groups who receive them. With limited access to land, income, or protection, both displaced and host communities face growing pressure to sustain themselves.",
-      "Through a community-led agroforestry initiative, they begin cultivating food and restoring degraded land together, creating a shared economic foundation that strengthens stability on both sides.",
-      "Green Refuge follows this fragile collaboration as it takes root, revealing how rebuilding livelihood in place can reduce the need for unsafe migration, and how refuge is shaped not only by those who arrive, but by those who choose to receive them.",
+      "Zo families fleeing the civil war in Myanmar cross into Mizoram, in Northeast India, without formal refugee status. They depend on the Indigenous communities who take them in, and neither side has much land, income or protection to spare.",
+      "With Impulse NGO Network, displaced and host families start farming together, on agroforestry plots that grow food and restore degraded land. Green Refuge follows the project as it takes root, and what it asks of the people who receive refugees.",
     ],
     trailerUrl: "https://vimeo.com/1169157132/584ddef2c5?share=copy&fl=sv&fe=ci",
     credits: [
@@ -233,6 +298,44 @@ export const projects: Project[] = [
       { label: "Runtime", value: "60 mins" },
       { label: "Status", value: "Completed" },
     ],
+    partners: [
+      {
+        src: "/partners/impulse-ngo-network.png",
+        alt: "Impulse NGO Network",
+        href: "https://www.impulsengonetwork.org/",
+      },
+    ],
+  },
+  {
+    slug: "voice-of-the-earth",
+    title: "Voice of the Earth",
+    shortTitle: "Voice of the Earth",
+    yearLabel: "2024",
+    status: "completed",
+    statusLabel: "[Completed]",
+    runtime: "3 mins 50 secs",
+    synopsis:
+      "Raine Piyãko of the Ashaninka tribe brings the sacred music of the Amazon together with a symphonic orchestral ensemble from Hungary.",
+    country: "Amazon",
+    logline:
+      "Raine Piyãko of the Ashaninka tribe brings the sacred music of the Amazon together with a symphonic orchestral ensemble from Hungary.",
+    stripTitle: "VOICE OF THE EARTH",
+    stripText:
+      "Raine Piyãko of the Ashaninka tribe brings the sacred music of the Amazon together with a symphonic orchestral ensemble from Hungary.",
+    coverImage: "/covers/voice-of-the-earth-cover.jpg",
+    reelVideo: "/showreel/voice-of-the-earth.mp4",
+    reelPoster: "/showreel/voice-of-the-earth-poster.jpg",
+    trailerUrl: "https://vimeo.com/1034632699",
+    credits: [
+      { label: "Director–Editor", value: "Lewis Levent" },
+      { label: "Producer–Composer", value: "Ryan Whitewolf" },
+      { label: "Artist", value: "Raine Piyãko" },
+      { label: "Format", value: "Music Video" },
+      { label: "Production Company", value: "Gez Studio" },
+      { label: "Year", value: "2024" },
+      { label: "Country", value: "Amazon" },
+      { label: "Status", value: "Completed" },
+    ],
   },
   {
     slug: "bon-aime",
@@ -247,8 +350,13 @@ export const projects: Project[] = [
     country: "Uganda, Netherlands",
     logline:
       "An Amsterdam-based DJ travels to Kampala, where spontaneous musical encounters become the foundation of a new record.",
+    stripTitle: "BON AIME",
+    stripText:
+      "Adam Shpilt, a DJ and producer from Amsterdam, arrives in Kampala knowing no one in its music scene. Within days he is in jam sessions with a hip-hop collective and a youth studio, with no rehearsal and no plan. Back in Amsterdam, working alone, he starts building a record out of those rooms. Bon Aime follows both halves: the sessions in Kampala and the record that comes from them.",
     spriteIndex: 4,
     coverImage: "/covers/bon-aime-cover.png",
+    reelVideo: "/showreel/bon-aime.mp4",
+    reelPoster: "/showreel/bon-aime-poster.jpg",
     stillImages: [
       "/stills/bon-aime/still-01.png",
       "/stills/bon-aime/still-02.png",
@@ -292,8 +400,13 @@ export const projects: Project[] = [
     country: "India",
     logline:
       "An indigenous artisan collective across the eight Northeastern states of India weaves peace silk, fostering resilience against human trafficking.",
+    stripTitle: "EMPOWER",
+    stripText:
+      "In Northeast India, women with few ways to earn at home come under pressure to migrate, and unsafe routes leave many open to trafficking. Hasina Kharbhih's Impulse NGO Network works with an artisan collective across the region's eight states, weaving peace silk for sale. Empower follows the weavers as the income starts to come in, and what it means to be able to stay.",
     spriteIndex: 5,
     coverImage: "/covers/empower-cover.png",
+    reelVideo: "/showreel/empower.mp4",
+    reelPoster: "/showreel/empower-poster.jpg",
     posterImage: "/posters/empower-poster.png",
     stillImages: [
       "/stills/empower/still-01.png",
@@ -325,6 +438,18 @@ export const projects: Project[] = [
       { label: "Runtime", value: "20 mins" },
       { label: "Status", value: "Completed" },
     ],
+    partners: [
+      {
+        src: "/partners/impulse-ngo-network.png",
+        alt: "Impulse NGO Network",
+        href: "https://www.impulsengonetwork.org/",
+      },
+      {
+        src: "/partners/impulse-empower.png",
+        alt: "Impulse Empower",
+        href: "https://www.impulsempower.com/",
+      },
+    ],
   },
   {
     slug: "proteen",
@@ -339,8 +464,13 @@ export const projects: Project[] = [
     country: "Uganda",
     logline:
       "A journey with Proteen, transforming organic waste into Supercharged Fertilizer, revolutionizing farming in Africa with a circular system.",
+    stripTitle: "PROTEEN",
+    stripText:
+      "In Uganda, Tommie Hooft and his partners went looking for an answer to a growing pile of organic waste and found the black soldier fly. Its larvae eat the waste. What they leave behind becomes fertiliser, and the larvae themselves become animal feed. Proteen follows the company's first steps, from the test batches to the farms where the fertiliser goes into the ground.",
     spriteIndex: 6,
     coverImage: "/covers/proteen-cover.png",
+    reelVideo: "/showreel/proteen.mp4",
+    reelPoster: "/showreel/proteen-poster.jpg",
     posterImage: "/posters/proteen-poster.png",
     stillImages: [
       "/stills/proteen/still-01.png",
@@ -370,6 +500,13 @@ export const projects: Project[] = [
       { label: "Runtime", value: "20 mins" },
       { label: "Status", value: "Completed" },
     ],
+    partners: [
+      {
+        src: "/partners/marula-proteen-limited.png",
+        alt: "Marula Proteen Limited",
+        href: "https://weareproteen.com/",
+      },
+    ],
   },
   {
     slug: "worldview-seaweed",
@@ -384,8 +521,13 @@ export const projects: Project[] = [
     country: "Thailand",
     logline:
       "A story of seaweed, sustainability, and CO₂ mitigation through a collaborative pilot uniting public and private sectors with Thai coastal communities.",
+    stripTitle: "WORLDVIEW SEAWEED",
+    stripText:
+      "In Ao Luek, on the coast of Krabi, families already farm seaweed in the open sea. Thailand's Department of Fisheries has spent a year testing a new strain on shore. Ploy, from the Worldview Climate Foundation, brings the two together. Worldview Seaweed follows the trials, and whether a crop grown in the sea can pay a coastal village and take carbon out of the air.",
     spriteIndex: 7,
     coverImage: "/covers/worldview-seaweed-cover.png",
+    reelVideo: "/showreel/worldview-seaweed.mp4",
+    reelPoster: "/showreel/worldview-seaweed-poster.jpg",
     posterImage: "/posters/worldview-seaweed-poster.png",
     stillImages: [
       "/stills/worldview-seaweed/still-01.png",
@@ -416,6 +558,18 @@ export const projects: Project[] = [
         value: "Worldview International Foundation",
       },
       { label: "Status", value: "Completed" },
+    ],
+    partners: [
+      {
+        src: "/partners/worldview-international-foundation.png",
+        alt: "Worldview International Foundation",
+        href: "https://worldview.global/",
+      },
+      {
+        src: "/partners/department-of-fisheries-thailand.png",
+        alt: "Department of Fisheries Thailand",
+        href: "https://www4.fisheries.go.th/index.php/dof_en",
+      },
     ],
   },
 ];
