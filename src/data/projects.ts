@@ -331,6 +331,7 @@ export const projects: Project[] = [
       { label: "Producer–Composer", value: "Ryan Whitewolf" },
       { label: "Artist", value: "Raine Piyãko" },
       { label: "Format", value: "Music Video" },
+      { label: "Runtime", value: "3 mins 50 secs" },
       { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2024" },
       { label: "Country", value: "Amazon" },

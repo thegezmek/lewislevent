@@ -120,8 +120,8 @@ export function HomeStage({ films }: HomeStageProps) {
         <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-t from-black/60 via-transparent to-transparent md:block" />
       </div>
 
-      <div className="relative z-10 flex min-h-dvh flex-col px-4 pb-6 pt-[max(1rem,env(safe-area-inset-top))] sm:px-6 md:h-dvh md:px-8 md:pb-0">
-        <div className="flex min-h-0 flex-1 items-center md:overflow-y-auto">
+      <div className="relative z-10 flex flex-col px-4 pb-6 pt-7 sm:px-6 md:h-dvh md:min-h-dvh md:px-8 md:pb-0 md:pt-[max(1rem,env(safe-area-inset-top))]">
+        <div className="flex min-h-0 flex-1 md:items-center md:overflow-y-auto">
           <div
             className={`flex w-full flex-col gap-6 md:flex-row md:justify-between md:gap-10 ${
               panel === "home" ? "md:items-center" : "md:items-start"
@@ -130,9 +130,9 @@ export function HomeStage({ films }: HomeStageProps) {
             <div className="min-w-0">
               {panel === "home" ? (
                 <p className="home-ui max-w-[36rem] text-[0.7rem] uppercase leading-[1.55] tracking-[0.12em] text-white">
-                  LEWIS LEVENT IS A DOCUMENTARY DIRECTOR AND EDITOR.
+                  LEWIS LEVENT IS A DOCUMENTARY DIRECTOR-EDITOR AND EXPLORER.
                   <br />
-                  HE IS THE FOUNDER OF{" "}
+                  FOUNDER OF{" "}
                   <a
                     href="https://gez.studio"
                     target="_blank"
@@ -141,7 +141,7 @@ export function HomeStage({ films }: HomeStageProps) {
                   >
                     GEZ STUDIO
                   </a>
-                  .
+                  , BASED IN BARCELONA.
                 </p>
               ) : null}
 

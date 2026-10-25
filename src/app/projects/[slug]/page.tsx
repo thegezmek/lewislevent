@@ -34,9 +34,11 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
 
   const isDone = project.status === "completed";
-  const sheetParagraphs = project.synopsisParagraphs ?? [];
+  // A film with credits gets the two-column sheet even without long-form
+  // paragraphs, so the CREDITS link never lands on a page without credits.
+  const sheetParagraphs = project.synopsisParagraphs ?? [project.synopsis];
   const sheetCredits = project.credits ?? [];
-  const hasSheet = sheetParagraphs.length > 0 && sheetCredits.length > 0;
+  const hasSheet = sheetCredits.length > 0;
   const trailerEmbedUrl = vimeoEmbedSrc(project.trailerUrl);
 
   return (
