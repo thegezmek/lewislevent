@@ -25,7 +25,7 @@ const CONTACT_LINKS = [
 
 /** Says what CONTACT is for, so the panel is an invitation rather than a list. */
 const CONTACT_LINE =
-  "For director/DP commissions, branded film and distribution inquiries.";
+  "For director commissions, branded film and distribution inquiries.";
 
 const VISIBLE_CONTACT = CONTACT_LINKS.filter(
   (link) => !link.href.startsWith("[TODO:"),
