@@ -42,7 +42,7 @@ const CONTACT_LINKS = [
 
 /** Says what CONTACT is for, so the panel is an invitation rather than a list. */
 const CONTACT_LINE =
-  "For director commissions, branded film and distribution inquiries.";
+  "For director commissions, branded film and distribution enquiries.";
 
 const VISIBLE_CONTACT = CONTACT_LINKS.filter(
   (link) => !link.href.startsWith("[TODO:"),
@@ -194,7 +194,7 @@ export function HomeStage({ films }: HomeStageProps) {
                     href="https://gez.studio"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
+                    className="tap-target -my-2 inline-block py-2 underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
                   >
                     GEZ STUDIO
                   </a>
@@ -378,7 +378,7 @@ export function HomeStage({ films }: HomeStageProps) {
             onPointerUp={handlePointerEnd}
             onPointerCancel={handlePointerEnd}
             onDragStart={(event) => event.preventDefault()}
-            className="film-strip -mx-4 cursor-grab overflow-x-auto overscroll-x-contain px-4 py-3 active:cursor-grabbing sm:-mx-6 sm:px-6 md:mx-0 md:px-0"
+            className="film-strip -mx-4 cursor-grab overflow-x-auto overscroll-x-contain px-4 py-3 active:cursor-grabbing sm:-mx-6 sm:px-6 md:-mx-2 md:px-2"
           >
             <ul className="flex w-max gap-3 md:gap-4">
               {films.map((film, index) => (

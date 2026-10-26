@@ -90,7 +90,7 @@ export const projects: Project[] = [
       "After the fires, a beekeeper returns to a vanished forest and an ancient tradition facing an uncertain future.",
     stripTitle: "FROM ASHES, EPISODE 1: LAND OF THE HONEY BUG",
     stripText:
-      "After the fires, a beekeeper returns to a vanished forest and an ancient tradition facing an uncertain future. Two months after Türkiye's 2021 wildfires, Hüseyin walks through his village in Muğla, where his home and the surrounding pine forests have been reduced to ash.",
+      "After the fires, a beekeeper returns to a vanished forest and an ancient tradition facing an uncertain future. Two\u00a0months after Türkiye's 2021 wildfires, Hüseyin walks through his village in Muğla, where his home and the surrounding\u00a0pine forests have been reduced to ash.",
     spriteIndex: 0,
     coverImage: "/covers/from-ashes-i-cover.jpg",
     reelVideo: "/showreel/from-ashes-i.mp4",
