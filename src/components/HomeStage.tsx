@@ -17,11 +17,15 @@ import type { Project } from "@/data/projects";
 type Panel = "home" | "films" | "about" | "contact";
 
 const CONTACT_LINKS = [
-  { label: "VIMEO", href: "[TODO: Vimeo URL]" },
-  { label: "INSTAGRAM", href: "[TODO: Instagram URL]" },
-  { label: "IMDB", href: "[TODO: IMDb URL]" },
+  { label: "VIMEO", href: "https://vimeo.com/gezstudio" },
+  { label: "INSTAGRAM", href: "https://www.instagram.com/lewislevent/" },
+  { label: "LINKEDIN", href: "[TODO: LinkedIn URL]" },
   { label: "E-MAIL", href: "mailto:lewis@gez.studio" },
 ] as const;
+
+/** Says what Lewis is open to, so CONTACT is an invitation rather than a list. */
+const CONTACT_LINE =
+  "I take directing and editing commissions, including brand films. The collection is available for distribution.";
 
 const VISIBLE_CONTACT = CONTACT_LINKS.filter(
   (link) => !link.href.startsWith("[TODO:"),
@@ -188,18 +192,25 @@ export function HomeStage({ films }: HomeStageProps) {
               ) : null}
 
               {panel === "contact" ? (
-                <ul className="flex flex-wrap gap-x-5 gap-y-3 text-[0.7rem] uppercase tracking-[0.16em]">
-                  {VISIBLE_CONTACT.map((link) => (
-                    <li key={link.label}>
-                      <a
-                        href={link.href}
-                        className="home-ui tap-target inline-flex items-center text-white/80 transition hover:text-white"
-                      >
-                        {link.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+                <div className="max-w-[38rem] md:max-w-[42rem]">
+                  <p className="home-copy text-[0.8125rem] leading-relaxed text-white/95 md:text-[0.75rem] md:leading-[1.7]">
+                    {CONTACT_LINE}
+                  </p>
+                  <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-[0.7rem] uppercase tracking-[0.16em]">
+                    {VISIBLE_CONTACT.map((link) => (
+                      <li key={link.label}>
+                        <a
+                          href={link.href}
+                          target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                          rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                          className="home-ui tap-target inline-flex items-center text-white/80 transition hover:text-white"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ) : null}
 
               {panel === "films" && selected ? (

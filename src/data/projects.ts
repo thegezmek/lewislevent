@@ -223,7 +223,7 @@ export const projects: Project[] = [
     statusLabel: "[Post-Production]",
     runtime: "60 mins",
     synopsis:
-      "In Kenya, soil health and policy converge as farmers, scientists, and institutions turn back toward biological balance—and what it costs to rebuild stability at its source.",
+      "In Kenya, soil health and policy converge as farmers, scientists, and institutions turn back toward biological balance, and what it costs to rebuild stability at its source.",
     country: "Kenya, Rwanda",
     logline:
       "Across East Africa, farmers, scientists, and agricultural innovators seek to restore soil fertility and reduce dependence on chemical inputs.",
@@ -274,7 +274,7 @@ export const projects: Project[] = [
     statusLabel: "[Completed]",
     runtime: "60 mins",
     synopsis:
-      "Zo communities cross from Myanmar into Northeast India without refugee status; a community-led agroforestry effort ties displaced and host peoples to the land—and to each other.",
+      "Zo communities cross from Myanmar into Northeast India without refugee status; a community-led agroforestry effort ties displaced and host peoples to the land, and to each other.",
     country: "Northeast India",
     logline:
       "On the Indo-Myanmar border, displaced Zo communities and their Indigenous hosts rebuild livelihoods together through agroforestry.",
@@ -337,7 +337,7 @@ export const projects: Project[] = [
       "Raine Piyãko of the Ashaninka tribe brings the sacred music of the Amazon together with a symphonic orchestral ensemble from Hungary.",
     stripTitle: "VOICE OF THE EARTH",
     stripText:
-      "Raine Piyãko of the Ashaninka tribe brings the sacred music of the Amazon together with a symphonic orchestral ensemble from Hungary. Composer Ryan Whitewolf recorded it across the Amazon and Budapest.",
+      "Raine Piyãko of the Ashaninka tribe brings the sacred music of the Amazon together with a symphonic orchestral ensemble from Hungary.",
     coverImage: "/covers/voice-of-the-earth-cover.jpg",
     reelVideo: "/showreel/voice-of-the-earth.mp4",
     reelPoster: "/showreel/voice-of-the-earth-poster.jpg",
@@ -379,7 +379,7 @@ export const projects: Project[] = [
     statusLabel: "[Post-Production]",
     runtime: "60 mins",
     synopsis:
-      "An Amsterdam DJ-producer lands in Kampala; sessions with a hip-hop collective become memory, then a record—improvisation, solitude, and sound between places.",
+      "An Amsterdam DJ-producer lands in Kampala; sessions with a hip-hop collective become memory, then a record: improvisation, solitude, and sound between places.",
     country: "Uganda, Netherlands",
     logline:
       "An Amsterdam-based DJ travels to Kampala, where spontaneous musical encounters become the foundation of a new record.",
@@ -428,7 +428,7 @@ export const projects: Project[] = [
     statusLabel: "[Completed]",
     runtime: "20 mins",
     synopsis:
-      "In Northeast India, a community-led weaving initiative with Impulse NGO Network turns traditional knowledge into income—and a buffer against trafficking and unsafe migration.",
+      "In Northeast India, a community-led weaving initiative with Impulse NGO Network turns traditional knowledge into income, and a buffer against trafficking and unsafe migration.",
     country: "Northeast India",
     logline:
       "An indigenous artisan collective across the eight Northeastern states of India weaves peace silk, fostering resilience against human trafficking.",
@@ -491,7 +491,7 @@ export const projects: Project[] = [
     statusLabel: "[Completed]",
     runtime: "20 mins",
     synopsis:
-      "Black soldier fly farming turns organic waste into feed and fertilizer—Proteen’s early days, circular economy, and rethinking waste, food, and opportunity in Uganda.",
+      "Black soldier fly farming turns organic waste into feed and fertilizer. Proteen’s early days, circular economy, and rethinking waste, food, and opportunity in Uganda.",
     country: "Uganda",
     logline:
       "A journey with Proteen, transforming organic waste into Supercharged Fertilizer, revolutionizing farming in Africa with a circular system.",
@@ -547,7 +547,7 @@ export const projects: Project[] = [
     statusLabel: "[Completed]",
     runtime: "20 mins",
     synopsis:
-      "Coastal Thailand: seaweed farming, the Worldview Climate Foundation, and communities balancing tradition with a changing ocean—and what cultivation means for livelihoods and ecology.",
+      "Coastal Thailand: seaweed farming, the Worldview Climate Foundation, and communities balancing tradition with a changing ocean, and what cultivation means for livelihoods and ecology.",
     country: "Thailand",
     logline:
       "A story of seaweed, sustainability, and CO₂ mitigation through a collaborative pilot uniting public and private sectors with Thai coastal communities.",
