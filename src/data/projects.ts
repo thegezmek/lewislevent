@@ -16,7 +16,8 @@ export type ProjectPartner = {
 export type ProjectPiece = {
   /** Shown in the selector and as the title once chosen. */
   label: string;
-  stripText: string;
+  /** Omit when the parent film's paragraph already covers this piece. */
+  stripText?: string;
   trailerUrl?: string;
   reelVideo?: string;
   reelPoster?: string;
@@ -64,8 +65,8 @@ export type Project = {
   credits?: ProjectCredit[];
   partners?: ProjectPartner[];
   fromAshesUrl?: string;
-  /** Extra films under this cover. A piece only appears in the selector once
-   *  it has both a synopsis and a trailer, so a half-filled one stays hidden. */
+  /** Extra films under this cover. A piece appears in the selector once it has
+   *  a trailer; its description falls back to the parent film's. */
   pieces?: ProjectPiece[];
 };
 
@@ -353,8 +354,7 @@ export const projects: Project[] = [
     pieces: [
       {
         label: "KAMINE NANA",
-        stripText: "[TODO: Kamine Nana synopsis, 45 to 90 words]",
-        trailerUrl: "[TODO: Kamine Nana Vimeo URL]",
+        trailerUrl: "https://vimeo.com/1079899991",
         reelVideo: "/showreel/kamine-nana.mp4",
         reelPoster: "/showreel/kamine-nana-poster.jpg",
         credits: [

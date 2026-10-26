@@ -51,13 +51,10 @@ export function HomeStage({ films }: HomeStageProps) {
 
   const selected = films[selectedIndex] ?? films[0];
 
-  // A piece only counts once it has both a synopsis and a trailer, so a
-  // half-filled placeholder never reaches the selector.
+  // A piece counts once it has a real trailer. Its paragraph is optional and
+  // falls back to the parent film's.
   const readyPieces = (selected?.pieces ?? []).filter(
-    (p) =>
-      !p.stripText.startsWith("[TODO:") &&
-      p.trailerUrl != null &&
-      !p.trailerUrl.startsWith("[TODO:"),
+    (p) => p.trailerUrl != null && !p.trailerUrl.startsWith("[TODO:"),
   );
   const piece = pieceIndex > 0 ? readyPieces[pieceIndex - 1] : undefined;
 
@@ -206,12 +203,8 @@ export function HomeStage({ films }: HomeStageProps) {
 
               {panel === "films" && selected ? (
                 <div className="max-w-[38rem] md:max-w-[42rem]">
-                  <h2 className="home-ui text-[0.7rem] uppercase tracking-[0.14em]">
-                    {activeTitle}
-                  </h2>
-
                   {readyPieces.length ? (
-                    <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.6rem] uppercase tracking-[0.18em]">
+                    <h2 className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.7rem] uppercase tracking-[0.14em]">
                       {[selected.stripTitle, ...readyPieces.map((p) => p.label)].map(
                         (label, index) => (
                           <Fragment key={label}>
@@ -238,8 +231,12 @@ export function HomeStage({ films }: HomeStageProps) {
                           </Fragment>
                         ),
                       )}
-                    </div>
-                  ) : null}
+                    </h2>
+                  ) : (
+                    <h2 className="home-ui text-[0.7rem] uppercase tracking-[0.14em]">
+                      {activeTitle}
+                    </h2>
+                  )}
 
                   <p className="home-copy mt-4 text-[0.8125rem] leading-relaxed text-white/95 md:text-[0.75rem] md:leading-[1.7]">
                     {activeText}
