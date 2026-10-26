@@ -381,7 +381,7 @@ export function HomeStage({ films }: HomeStageProps) {
             onDragStart={(event) => event.preventDefault()}
             className="film-strip -mx-4 cursor-grab overflow-x-auto overscroll-x-contain px-4 py-3 active:cursor-grabbing sm:-mx-6 sm:px-6 md:-mx-2 md:px-2"
           >
-            <ul className="flex w-max gap-3 md:gap-4">
+            <ul className="flex w-max gap-2 sm:gap-3 md:gap-4">
               {films.map((film, index) => (
                 <li key={film.slug} className="shrink-0">
                   <button
@@ -389,7 +389,7 @@ export function HomeStage({ films }: HomeStageProps) {
                     onClick={() => selectFilm(index)}
                     aria-pressed={panel === "films" && index === selectedIndex}
                     aria-label={film.stripTitle}
-                    className={`film-cover relative block aspect-video h-[5.75rem] overflow-hidden bg-black sm:h-[7rem] md:h-[8.5rem] ${
+                    className={`film-cover relative block aspect-video h-[4.25rem] overflow-hidden bg-black sm:h-[6rem] md:h-[8.5rem] ${
                       panel === "films" && index === selectedIndex
                         ? "opacity-100"
                         : "opacity-45 hover:opacity-90"
