@@ -162,7 +162,7 @@ export function HomeStage({ films }: HomeStageProps) {
 
   return (
     <div className="home-stage relative min-h-dvh overflow-x-hidden bg-black text-white md:h-dvh md:overflow-hidden">
-      <div className="relative h-[min(56vh,28rem)] w-full md:absolute md:inset-0 md:h-full">
+      <div className="absolute inset-0 h-full w-full">
         <ShowreelBackdrop src={backdropSrc} poster={backdropPoster} />
         <div className="pointer-events-none absolute inset-0 bg-black/30 md:bg-black/25" />
         {/* Weighted left and bottom, where the copy and the strip sit, so pale reels stay readable.
@@ -174,11 +174,12 @@ export function HomeStage({ films }: HomeStageProps) {
               : "from-black/75 via-black/55 via-60% to-black/5"
           }`}
         />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[88%] bg-gradient-to-t from-black via-black/75 via-40% to-transparent md:hidden" />
         <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-t from-black/60 via-transparent to-transparent md:block" />
       </div>
 
-      <div className="relative z-10 flex flex-col px-4 pb-6 pt-7 sm:px-6 md:h-dvh md:min-h-dvh md:px-8 md:pb-0 md:pt-[max(1rem,env(safe-area-inset-top))]">
-        <div className="flex min-h-0 flex-1 md:items-center md:overflow-y-auto">
+      <div className="relative z-10 flex min-h-dvh flex-col justify-end px-4 pb-6 pt-7 sm:px-6 md:h-dvh md:justify-start md:px-8 md:pb-0 md:pt-[max(1rem,env(safe-area-inset-top))]">
+        <div className="flex min-h-0 md:flex-1 md:items-center md:overflow-y-auto">
           <div
             className={`flex w-full flex-col gap-6 md:flex-row md:justify-between md:gap-10 ${
               panel === "home" ? "md:items-center" : "md:items-start"
@@ -413,7 +414,7 @@ export function HomeStage({ films }: HomeStageProps) {
             </ul>
           </div>
           ) : null}
-          <p className="home-ui mt-4 text-[0.58rem] uppercase tracking-[0.16em] text-white/45">
+          <p className="home-ui mt-4 text-[0.5rem] uppercase tracking-[0.12em] text-white/40 md:text-[0.52rem] md:tracking-[0.14em]">
             Lewis Levent © 2026 · All rights reserved · Directorial debut
             collection (2021–2026).
           </p>

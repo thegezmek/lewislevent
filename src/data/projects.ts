@@ -90,7 +90,7 @@ export const projects: Project[] = [
       "After the fires, a beekeeper returns to a vanished forest and an ancient tradition facing an uncertain future.",
     stripTitle: "FROM ASHES, EPISODE 1: LAND OF THE HONEY BUG",
     stripText:
-      "After the fires, a beekeeper returns to a vanished forest and an ancient tradition facing an uncertain future. Two\u00a0months after Türkiye's 2021 wildfires, Hüseyin walks through his village in Muğla, where his home and the surrounding\u00a0pine forests have been reduced to ash.",
+      "After the fires, a beekeeper returns to a vanished forest. As the fragile ecology behind pine honey begins to unravel, the relationship between honey bee, “honey bug” and forest holds the future of an ancient beekeeping tradition.",
     spriteIndex: 0,
     coverImage: "/covers/from-ashes-i-cover.jpg",
     reelVideo: "/showreel/from-ashes-i.mp4",
@@ -173,7 +173,7 @@ export const projects: Project[] = [
       "As wildfire approaches Ormana, a mountain community draws on its knowledge of the forest to protect their 800-year-old village.",
     stripTitle: "FROM ASHES, EPISODE 2: THE MOUNTAINSIDE OF ORMANA",
     stripText:
-      "As wildfire approaches Ormana, a mountain community draws on its knowledge of the forest to protect their 800-year-old village. Life there is bound to the surrounding forest, and as the fire closes in they turn to instinct, knowledge and each other.",
+      "In Ormana, an 800-year-old village in the Taurus mountains of Türkiye, life is bound to the surrounding forest. As wildfire closes in, residents turn to instinct, knowledge and each other in an effort to save their home.",
     spriteIndex: 1,
     coverImage: "/covers/from-ashes-ii-cover.png",
     reelVideo: "/showreel/from-ashes-ii.mp4",
