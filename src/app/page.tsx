@@ -71,6 +71,18 @@ export default function Home() {
             {paragraph}
           </p>
         ))}
+        {/* The cover strip only mounts on the FILMS panel, so the titles and
+            their synopses live here too, where crawlers always meet them.
+            Text only: the project pages stay unlinked from the site. */}
+        <h2>Films</h2>
+        <ul>
+          {projects.map((project) => (
+            <li key={project.slug}>
+              <h3>{project.title}</h3>
+              <p>{project.stripText}</p>
+            </li>
+          ))}
+        </ul>
       </div>
       <HomeStage films={projects} />
     </>

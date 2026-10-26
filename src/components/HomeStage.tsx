@@ -351,6 +351,7 @@ export function HomeStage({ films }: HomeStageProps) {
         </div>
 
         <div className="mt-10 md:mt-auto md:pb-[max(1.5rem,env(safe-area-inset-bottom))]">
+          {panel === "films" ? (
           <div
             ref={trackRef}
             onPointerDown={handlePointerDown}
@@ -389,6 +390,7 @@ export function HomeStage({ films }: HomeStageProps) {
               ))}
             </ul>
           </div>
+          ) : null}
           <p className="home-ui mt-4 text-[0.58rem] uppercase tracking-[0.16em] text-white/45">
             Lewis Levent © 2026 · All rights reserved · Directorial debut
             collection (2021–2026).
