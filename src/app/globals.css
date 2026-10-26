@@ -273,6 +273,43 @@ button.tap-target {
   touch-action: pan-x;
 }
 
+/* Film strip covers. The scale lives on the media, inside the cover's own
+   overflow, so a hover pushes into the frame without nudging the row. */
+.film-cover {
+  border-radius: 5px;
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.film-cover-media {
+  transition:
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+@media (hover: hover) {
+  .film-cover:hover .film-cover-media {
+    transform: scale(1.06);
+  }
+}
+
+.film-cover:active {
+  transform: scale(0.985);
+}
+
+/* The selected cover carries a hairline rather than a heavier border. */
+.film-cover[aria-pressed="true"] {
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.24);
+}
+
+.film-cover:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgb(255 255 255 / 0.7);
+}
+
 .film-strip::-webkit-scrollbar {
   display: none;
 }

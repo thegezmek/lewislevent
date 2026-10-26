@@ -369,10 +369,10 @@ export function HomeStage({ films }: HomeStageProps) {
                     onClick={() => selectFilm(index)}
                     aria-pressed={panel === "films" && index === selectedIndex}
                     aria-label={film.stripTitle}
-                    className={`relative block aspect-video h-[5.75rem] overflow-hidden bg-black sm:h-[7rem] md:h-[8.5rem] ${
+                    className={`film-cover relative block aspect-video h-[5.75rem] overflow-hidden bg-black sm:h-[7rem] md:h-[8.5rem] ${
                       panel === "films" && index === selectedIndex
                         ? "opacity-100"
-                        : "opacity-40 hover:opacity-70"
+                        : "opacity-45 hover:opacity-90"
                     }`}
                   >
                     {film.coverImage ? (
@@ -381,7 +381,7 @@ export function HomeStage({ films }: HomeStageProps) {
                         alt=""
                         fill
                         draggable={false}
-                        className="object-cover"
+                        className="film-cover-media object-cover"
                         sizes="220px"
                       />
                     ) : null}
