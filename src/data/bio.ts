@@ -21,5 +21,5 @@ export const siteDescription =
  *  keeping each two-word region whole across a line break. */
 export const bioParagraphs = [
   "There is a feeling I chase in the full immersion of a story.\nIt takes you out of spectating and hands you something you can use in your own life.",
-  "Over the last five years I directed and edited my debut collection across T\u00fcrkiye, East\u00a0Africa, Northeast\u00a0India, Southeast\u00a0Asia and Europe. I want a viewer anywhere to find some resonance in a world nothing like their own.",
+  "Over the last five years I directed and edited my debut collection across T\u00fcrkiye, East\u00a0Africa, Northeast\u00a0India, Southeast\u00a0Asia and Europe. I hope a viewer anywhere can find resonance in a world nothing like their own.",
 ] as const;
