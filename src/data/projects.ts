@@ -555,7 +555,7 @@ export const projects: Project[] = [
     stripText:
       "A story of seaweed, sustainability and CO₂ mitigation through a collaborative pilot uniting public and private sectors with Thai coastal communities. In Ao Luek, on the coast of Krabi, families already farm seaweed in the open sea.",
     spriteIndex: 7,
-    coverImage: "/covers/worldview-seaweed-cover.png",
+    coverImage: "/covers/worldview-seaweed-cover.jpg",
     reelVideo: "/showreel/worldview-seaweed.mp4",
     reelPoster: "/showreel/worldview-seaweed-poster.jpg",
     posterImage: "/posters/worldview-seaweed-poster.png",
