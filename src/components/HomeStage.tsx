@@ -4,17 +4,46 @@ import Image from "next/image";
 import {
   Fragment,
   useCallback,
+  useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import { FilmPlayer } from "@/components/FilmPlayer";
 import { ShowreelBackdrop } from "@/components/ShowreelBackdrop";
-import { ABOUT_REEL_POSTER, ABOUT_REEL_SRC } from "@/data/showreel";
+import {
+  ABOUT_REEL_POSTER,
+  ABOUT_REEL_POSTER_MOBILE,
+  ABOUT_REEL_SRC,
+  ABOUT_REEL_SRC_MOBILE,
+  SHOWREEL_POSTER,
+  SHOWREEL_POSTER_MOBILE,
+  SHOWREEL_SRC,
+  SHOWREEL_SRC_MOBILE,
+} from "@/data/showreel";
 import { bioParagraphs, contactEmail } from "@/data/bio";
 import type { Project } from "@/data/projects";
 
 type Panel = "home" | "films" | "about" | "contact";
+
+/** Runs before the first paint in the browser, so the right reel is chosen
+ *  without a frame of the wrong one being requested. */
+const useBrowserLayoutEffect =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
+
+/** null until the browser tells us, so nothing is fetched on a guess. */
+function useNarrowViewport() {
+  const [narrow, setNarrow] = useState<boolean | null>(null);
+  useBrowserLayoutEffect(() => {
+    const query = window.matchMedia("(max-width: 767px)");
+    const update = () => setNarrow(query.matches);
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+  return narrow;
+}
 
 /** A piece states only what differs, so its rows are merged over the film's
  *  by label and anything new is appended. */
@@ -63,6 +92,7 @@ export function HomeStage({ films }: HomeStageProps) {
   const [showCredits, setShowCredits] = useState(false);
   // 0 is the film itself; 1+ index into its `pieces`.
   const [pieceIndex, setPieceIndex] = useState(0);
+  const narrow = useNarrowViewport();
   const trackRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef(false);
   const didDragRef = useRef(false);
@@ -86,20 +116,34 @@ export function HomeStage({ films }: HomeStageProps) {
   const activeCredits = piece
     ? mergeCredits(selected?.credits, piece.credits)
     : selected?.credits;
-  // Films play their own reel, ABOUT plays Lewis on location, and the rest
-  // fall through to the general showreel inside ShowreelBackdrop.
+  // Films play their own reel; ABOUT and everything else play Lewis's, in the
+  // portrait recut on phones. Both stay undefined until the viewport is known,
+  // so the browser never fetches the wrong orientation first.
+  const generalReel =
+    narrow === null
+      ? undefined
+      : narrow
+        ? { src: SHOWREEL_SRC_MOBILE, poster: SHOWREEL_POSTER_MOBILE }
+        : { src: SHOWREEL_SRC, poster: SHOWREEL_POSTER };
+  const aboutReel =
+    narrow === null
+      ? undefined
+      : narrow
+        ? { src: ABOUT_REEL_SRC_MOBILE, poster: ABOUT_REEL_POSTER_MOBILE }
+        : { src: ABOUT_REEL_SRC, poster: ABOUT_REEL_POSTER };
+
   const backdropSrc =
     panel === "films"
       ? (piece?.reelVideo ?? selected?.reelVideo)
       : panel === "about"
-        ? ABOUT_REEL_SRC
-        : undefined;
+        ? aboutReel?.src
+        : generalReel?.src;
   const backdropPoster =
     panel === "films"
       ? (piece?.reelPoster ?? selected?.reelPoster)
       : panel === "about"
-        ? ABOUT_REEL_POSTER
-        : undefined;
+        ? aboutReel?.poster
+        : generalReel?.poster;
 
   const togglePanel = (next: Exclude<Panel, "home">) => {
     setPanel((current) => (current === next ? "home" : next));

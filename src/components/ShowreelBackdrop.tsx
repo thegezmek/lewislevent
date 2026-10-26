@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SHOWREEL_POSTER, SHOWREEL_SRC, SHOWREEL_STILLS } from "@/data/showreel";
+import { SHOWREEL_STILLS } from "@/data/showreel";
 
 type ShowreelBackdropProps = {
   src?: string;
@@ -9,13 +9,15 @@ type ShowreelBackdropProps = {
 };
 
 type Layer = {
-  src: string;
+  src?: string;
   poster?: string;
 };
 
 export function ShowreelBackdrop({ src, poster }: ShowreelBackdropProps = {}) {
-  const videoSrc = src ?? SHOWREEL_SRC;
-  const videoPoster = src ? poster : SHOWREEL_POSTER;
+  // No default: the caller decides which reel, and passes nothing until it
+  // knows the viewport. The stills stand in for that first moment.
+  const videoSrc = src;
+  const videoPoster = poster;
 
   /** The reel on screen, which lags behind the prop until the next one can play. */
   const [shown, setShown] = useState<Layer>({ src: videoSrc, poster: videoPoster });
@@ -24,7 +26,7 @@ export function ShowreelBackdrop({ src, poster }: ShowreelBackdropProps = {}) {
   if (videoSrc) {
     return (
       <div className="showreel-media absolute inset-0 overflow-hidden bg-black">
-        {incoming ? (
+        {incoming && shown.src ? (
           <video
             key={shown.src}
             className="absolute inset-0 h-full w-full object-cover"

@@ -8,6 +8,16 @@ export const ABOUT_REEL_SRC = "/showreel/lew-about.mp4";
 
 export const ABOUT_REEL_POSTER = "/showreel/lew-about-poster.jpg";
 
+/** Portrait recuts for phones, framed by Lewis rather than cropped by CSS.
+ *  Only these two have vertical versions; a film's own reel does not. */
+export const SHOWREEL_SRC_MOBILE = "/showreel/lew-reel-mobile.mp4";
+
+export const SHOWREEL_POSTER_MOBILE = "/showreel/lew-reel-mobile-poster.jpg";
+
+export const ABOUT_REEL_SRC_MOBILE = "/showreel/lew-about-mobile.mp4";
+
+export const ABOUT_REEL_POSTER_MOBILE = "/showreel/lew-about-mobile-poster.jpg";
+
 export const SHOWREEL_STILLS = [
   "/director-gallery/amazon-798.png",
   "/director-gallery/zm-selects-1.png",

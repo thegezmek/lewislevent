@@ -124,10 +124,6 @@ export const projects: Project[] = [
       { label: "Original Music", value: "İlker Yurtcan" },
       { label: "Sound Post-Production", value: "Anthony Croft" },
       { label: "Motion Design", value: "Ezgi Lemur" },
-      {
-        label: "Additional Camera",
-        value: "Gabriel Fenner (2021), Sefa Zaman (2023)",
-      },
       { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2021–2025" },
       { label: "Location", value: "Türkiye" },
@@ -207,7 +203,6 @@ export const projects: Project[] = [
       { label: "Original Music", value: "İlker Yurtcan" },
       { label: "Sound Post-Production", value: "Anthony Croft" },
       { label: "Motion Design", value: "Ezgi Lemur" },
-      { label: "Additional Camera", value: "Sefa Zaman (2023)" },
       { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2021–2025" },
       { label: "Location", value: "Türkiye" },
