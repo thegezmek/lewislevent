@@ -231,7 +231,7 @@ export const projects: Project[] = [
       "Across East Africa, farmers, scientists, and agricultural innovators seek to restore soil fertility and reduce dependence on chemical inputs.",
     stripTitle: "KUZAYA",
     stripText:
-      "Across East Africa, farmers, scientists and agricultural innovators seek to restore soil fertility and reduce dependence on chemical inputs. In Homa Bay, on the shore of Lake Victoria, John Roche turns his community's organic waste into fertiliser.",
+      "Across East Africa, farmers, scientists and agricultural innovators seek to restore soil fertility and reduce dependence on chemical inputs. The film asks the question: what feeds our food?",
     spriteIndex: 2,
     coverImage: "/covers/kuzaya-cover.png",
     reelVideo: "/showreel/kuzaya.mp4",
@@ -341,8 +341,8 @@ export const projects: Project[] = [
     stripText:
       "Raine Piyãko of the Ashaninka tribe brings the sacred music of the Amazon together with a symphonic orchestral ensemble from Hungary.",
     coverImage: "/covers/voice-of-the-earth-cover.jpg",
-    reelVideo: "/showreel/voice-of-the-earth.mp4",
-    reelPoster: "/showreel/voice-of-the-earth-poster.jpg",
+    reelVideo: "/showreel/nana.mp4",
+    reelPoster: "/showreel/nana-poster.jpg",
     trailerUrl: "https://vimeo.com/1108895359/7235adde5b",
     credits: [
       { label: "Director–Editor", value: "Lewis Levent" },
