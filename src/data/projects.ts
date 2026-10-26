@@ -90,7 +90,7 @@ export const projects: Project[] = [
     stripText:
       "After the fires, a beekeeper returns to a vanished forest and an ancient tradition facing an uncertain future. Two months after Türkiye's 2021 wildfires, Hüseyin walks through his village in Muğla, where his home and the surrounding pine forests have been reduced to ash.",
     spriteIndex: 0,
-    coverImage: "/covers/from-ashes-i-cover.png",
+    coverImage: "/covers/from-ashes-i-cover.jpg",
     reelVideo: "/showreel/from-ashes-i.mp4",
     reelPoster: "/showreel/from-ashes-i-poster.jpg",
     stillImages: [
@@ -282,7 +282,7 @@ export const projects: Project[] = [
     stripText:
       "On the Indo-Myanmar border, displaced Zo communities and their Indigenous hosts rebuild livelihoods together through agroforestry. With Impulse NGO Network, displaced and host families farm together on plots that grow food and restore degraded land.",
     spriteIndex: 3,
-    coverImage: "/stills/green-refuge/still-01.png",
+    coverImage: "/covers/green-refuge-cover.jpg",
     reelVideo: "/showreel/green-refuge.mp4",
     reelPoster: "/showreel/green-refuge-poster.jpg",
     stillImages: [
@@ -436,7 +436,7 @@ export const projects: Project[] = [
     stripText:
       "An indigenous artisan collective across Northeast India weaves peace silk, fostering resilience against human trafficking and unsafe migration. Hasina Kharbhih's Impulse NGO Network works with the collective across the region's eight states, and the film follows the weavers as the income starts to come in.",
     spriteIndex: 5,
-    coverImage: "/covers/empower-cover.png",
+    coverImage: "/covers/empower-cover.jpg",
     reelVideo: "/showreel/empower.mp4",
     reelPoster: "/showreel/empower-poster.jpg",
     posterImage: "/posters/empower-poster.png",
@@ -499,7 +499,7 @@ export const projects: Project[] = [
     stripText:
       "Featuring Ugandan-based waste management company Proteen, the film navigates the opportunity and challenges posed by organic waste. Tommie Hooft and his partners found the black soldier fly: its larvae eat the waste, and what they leave behind becomes fertiliser.",
     spriteIndex: 6,
-    coverImage: "/covers/proteen-cover.png",
+    coverImage: "/covers/proteen-cover.jpg",
     reelVideo: "/showreel/proteen.mp4",
     reelPoster: "/showreel/proteen-poster.jpg",
     posterImage: "/posters/proteen-poster.png",
