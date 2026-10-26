@@ -11,6 +11,18 @@ export type ProjectPartner = {
   href: string;
 };
 
+/** A second film shown under the same cover, picked from a selector in the
+ *  panel. The project's own fields are the first piece; these follow it. */
+export type ProjectPiece = {
+  /** Shown in the selector and as the title once chosen. */
+  label: string;
+  stripText: string;
+  trailerUrl?: string;
+  reelVideo?: string;
+  reelPoster?: string;
+  credits?: ProjectCredit[];
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -52,6 +64,9 @@ export type Project = {
   credits?: ProjectCredit[];
   partners?: ProjectPartner[];
   fromAshesUrl?: string;
+  /** Extra films under this cover. A piece only appears in the selector once
+   *  it has both a synopsis and a trailer, so a half-filled one stays hidden. */
+  pieces?: ProjectPiece[];
 };
 
 export const projects: Project[] = [
@@ -70,7 +85,7 @@ export const projects: Project[] = [
       "After the fires, a beekeeper returns to a vanished forest and an ancient tradition facing an uncertain future.",
     stripTitle: "FROM ASHES — EPISODE 1: LAND OF THE HONEY BUG",
     stripText:
-      "Two months after Türkiye's 2021 wildfires, Hüseyin walks through his village in Muğla, where his home and the surrounding pine forests have been reduced to ash. These forests sustained an ancient beekeeping tradition, rooted in the relationship between honey bee, \"honey bug\" and pine tree. The honey bug, a small insect dwelling on pine trees and found almost nowhere else on Earth, lies at the heart of pine honey production. Land of the Honey Bug follows a community searching for continuity in a landscape that may no longer sustain them.",
+      "After the fires, a beekeeper returns to a vanished forest and an ancient tradition facing an uncertain future. Two months after Türkiye's 2021 wildfires, Hüseyin walks through his village in Muğla, where his home and the surrounding pine forests have been reduced to ash.",
     spriteIndex: 0,
     coverImage: "/covers/from-ashes-i-cover.png",
     reelVideo: "/showreel/from-ashes-i.mp4",
@@ -108,9 +123,9 @@ export const projects: Project[] = [
         label: "Additional Camera",
         value: "Gabriel Fenner (2021), Sefa Zaman (2023)",
       },
-      { label: "Production Company", value: "Gez Studio Ltd" },
+      { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2021–2025" },
-      { label: "Country", value: "Türkiye" },
+      { label: "Location", value: "Türkiye" },
       { label: "Language", value: "Turkish, English" },
       { label: "Runtime", value: "73 mins" },
       { label: "Status", value: "Completed" },
@@ -153,7 +168,7 @@ export const projects: Project[] = [
       "As wildfire approaches Ormana, a mountain community draws on its knowledge of the forest to protect their 800-year-old village.",
     stripTitle: "FROM ASHES — EPISODE 2: THE MOUNTAINSIDE OF ORMANA",
     stripText:
-      "In Ormana, an 800-year-old village in the Taurus mountains of Türkiye, life is bound to the surrounding forest. As wildfire closes in, residents turn to instinct, knowledge and each other in an effort to save their home.",
+      "As wildfire approaches Ormana, a mountain community draws on its knowledge of the forest to protect their 800-year-old village. Life there is bound to the surrounding forest, and as the fire closes in they turn to instinct, knowledge and each other.",
     spriteIndex: 1,
     coverImage: "/covers/from-ashes-ii-cover.png",
     reelVideo: "/showreel/from-ashes-ii.mp4",
@@ -188,9 +203,9 @@ export const projects: Project[] = [
       { label: "Sound Post-Production", value: "Anthony Croft" },
       { label: "Motion Design", value: "Ezgi Lemur" },
       { label: "Additional Camera", value: "Sefa Zaman (2023)" },
-      { label: "Production Company", value: "Gez Studio Ltd" },
+      { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2021–2025" },
-      { label: "Country", value: "Türkiye" },
+      { label: "Location", value: "Türkiye" },
       { label: "Language", value: "Turkish, English" },
       { label: "Runtime", value: "55 mins" },
       { label: "Status", value: "Completed" },
@@ -211,9 +226,11 @@ export const projects: Project[] = [
       "Across East Africa, farmers, scientists, and agricultural innovators seek to restore soil fertility and reduce dependence on chemical inputs.",
     stripTitle: "KUZAYA",
     stripText:
-      "In Homa Bay, on the shore of Lake Victoria, John Roche turns his community's organic waste into fertiliser. Across Kenya and Rwanda, farmers pay more for chemical inputs every season and harvest less. Kuzaya follows the farmers, scientists and companies working to bring the life back into the soil. On the way it asks a second question: what is the soil doing to our food, and to us?",
+      "Across East Africa, farmers, scientists and agricultural innovators seek to restore soil fertility and reduce dependence on chemical inputs. In Homa Bay, on the shore of Lake Victoria, John Roche turns his community's organic waste into fertiliser.",
     spriteIndex: 2,
     coverImage: "/covers/kuzaya-cover.png",
+    reelVideo: "/showreel/kuzaya.mp4",
+    reelPoster: "/showreel/kuzaya-poster.jpg",
     stillImages: [
       "/stills/kuzaya/still-01.png",
       "/stills/kuzaya/still-02.png",
@@ -233,13 +250,10 @@ export const projects: Project[] = [
     credits: [
       { label: "Director–Editor", value: "Lewis Levent" },
       { label: "Producer", value: "Vigilance Atieno" },
-      {
-        label: "Executive Producers",
-        value: "Tommie Hooft, Julian Oliver",
-      },
+      { label: "Executive Producer", value: "Tommie Hooft" },
       { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2026" },
-      { label: "Country", value: "Kenya, Rwanda" },
+      { label: "Location", value: "Kenya, Rwanda" },
       {
         label: "Language",
         value: "English, Swahili, Kinyarwanda",
@@ -258,12 +272,12 @@ export const projects: Project[] = [
     runtime: "60 mins",
     synopsis:
       "Zo communities cross from Myanmar into Northeast India without refugee status; a community-led agroforestry effort ties displaced and host peoples to the land—and to each other.",
-    country: "India, Myanmar",
+    country: "Northeast India",
     logline:
       "On the Indo-Myanmar border, displaced Zo communities and their Indigenous hosts rebuild livelihoods together through agroforestry.",
     stripTitle: "GREEN REFUGE",
     stripText:
-      "Zo families fleeing the civil war in Myanmar cross into Mizoram, in Northeast India, without formal refugee status. They depend on the Indigenous communities who take them in, and neither side has much land, income or protection to spare. With Impulse NGO Network, displaced and host families start farming together, on agroforestry plots that grow food and restore degraded land. Green Refuge follows the project as it takes root, and what it asks of the people who receive refugees.",
+      "On the Indo-Myanmar border, displaced Zo communities and their Indigenous hosts rebuild livelihoods together through agroforestry. With Impulse NGO Network, displaced and host families farm together on plots that grow food and restore degraded land.",
     spriteIndex: 3,
     coverImage: "/stills/green-refuge/still-01.png",
     reelVideo: "/showreel/green-refuge.mp4",
@@ -287,10 +301,9 @@ export const projects: Project[] = [
     credits: [
       { label: "Director–Editor", value: "Lewis Levent" },
       { label: "Producer", value: "Hasina Kharbhih" },
-      { label: "Executive Producer", value: "Julian Oliver" },
       { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2021–2025" },
-      { label: "Country", value: "India, Myanmar" },
+      { label: "Location", value: "Northeast India" },
       {
         label: "Language",
         value: "English, Burmese, Mizo, Manipuri",
@@ -316,12 +329,12 @@ export const projects: Project[] = [
     runtime: "3 mins 50 secs",
     synopsis:
       "Raine Piyãko of the Ashaninka tribe brings the sacred music of the Amazon together with a symphonic orchestral ensemble from Hungary.",
-    country: "Amazon",
+    country: "Amazon, Budapest",
     logline:
       "Raine Piyãko of the Ashaninka tribe brings the sacred music of the Amazon together with a symphonic orchestral ensemble from Hungary.",
     stripTitle: "VOICE OF THE EARTH",
     stripText:
-      "Raine Piyãko of the Ashaninka tribe brings the sacred music of the Amazon together with a symphonic orchestral ensemble from Hungary.",
+      "Raine Piyãko of the Ashaninka tribe brings the sacred music of the Amazon together with a symphonic orchestral ensemble from Hungary. Composer Ryan Whitewolf recorded it across the Amazon and Budapest.",
     coverImage: "/covers/voice-of-the-earth-cover.jpg",
     reelVideo: "/showreel/voice-of-the-earth.mp4",
     reelPoster: "/showreel/voice-of-the-earth-poster.jpg",
@@ -334,8 +347,24 @@ export const projects: Project[] = [
       { label: "Runtime", value: "3 mins 50 secs" },
       { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2024" },
-      { label: "Country", value: "Amazon" },
+      { label: "Location", value: "Amazon, Budapest" },
       { label: "Status", value: "Completed" },
+    ],
+    pieces: [
+      {
+        label: "KAMINE NANA",
+        stripText: "[TODO: Kamine Nana synopsis, 45 to 90 words]",
+        trailerUrl: "[TODO: Kamine Nana Vimeo URL]",
+        reelVideo: "/showreel/kamine-nana.mp4",
+        reelPoster: "/showreel/kamine-nana-poster.jpg",
+        credits: [
+          { label: "Director\u2013Editor", value: "Lewis Levent" },
+          { label: "Format", value: "Music Video" },
+          { label: "Runtime", value: "5 mins 37 secs" },
+          { label: "Production Company", value: "Gez Studio" },
+          { label: "Status", value: "Completed" },
+        ],
+      },
     ],
   },
   {
@@ -353,7 +382,7 @@ export const projects: Project[] = [
       "An Amsterdam-based DJ travels to Kampala, where spontaneous musical encounters become the foundation of a new record.",
     stripTitle: "BON AIME",
     stripText:
-      "Adam Shpilt, a DJ and producer from Amsterdam, arrives in Kampala knowing no one in its music scene. Within days he is in jam sessions with a hip-hop collective and a youth studio, with no rehearsal and no plan. Back in Amsterdam, working alone, he starts building a record out of those rooms. Bon Aime follows both halves: the sessions in Kampala and the record that comes from them.",
+      "An Amsterdam-based DJ travels to Kampala, where spontaneous musical encounters become the foundation of a new record. Within days he is in jam sessions with a hip-hop collective and a youth studio, with no rehearsal and no plan.",
     spriteIndex: 4,
     coverImage: "/covers/bon-aime-cover.png",
     reelVideo: "/showreel/bon-aime.mp4",
@@ -377,11 +406,10 @@ export const projects: Project[] = [
     credits: [
       { label: "Director–Editor", value: "Lewis Levent" },
       { label: "Producer", value: "Adam Shpilt" },
-      { label: "Executive Producer", value: "Julian Oliver" },
       { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2023–2024" },
       {
-        label: "Country",
+        label: "Location",
         value: "Uganda, Netherlands",
       },
       { label: "Language", value: "English, Lugandan" },
@@ -398,12 +426,12 @@ export const projects: Project[] = [
     runtime: "20 mins",
     synopsis:
       "In Northeast India, a community-led weaving initiative with Impulse NGO Network turns traditional knowledge into income—and a buffer against trafficking and unsafe migration.",
-    country: "India",
+    country: "Northeast India",
     logline:
       "An indigenous artisan collective across the eight Northeastern states of India weaves peace silk, fostering resilience against human trafficking.",
     stripTitle: "EMPOWER",
     stripText:
-      "In Northeast India, women with few ways to earn at home come under pressure to migrate, and unsafe routes leave many open to trafficking. Hasina Kharbhih's Impulse NGO Network works with an artisan collective across the region's eight states, weaving peace silk for sale. Empower follows the weavers as the income starts to come in, and what it means to be able to stay.",
+      "An indigenous artisan collective across Northeast India weaves peace silk, fostering resilience against human trafficking and unsafe migration. Hasina Kharbhih's Impulse NGO Network works with the collective across the region's eight states, and the film follows the weavers as the income starts to come in.",
     spriteIndex: 5,
     coverImage: "/covers/empower-cover.png",
     reelVideo: "/showreel/empower.mp4",
@@ -428,10 +456,9 @@ export const projects: Project[] = [
     credits: [
       { label: "Director–Editor", value: "Lewis Levent" },
       { label: "Producer", value: "Hasina Kharbhih" },
-      { label: "Executive Producer", value: "Julian Oliver" },
       { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2021–2025" },
-      { label: "Country", value: "India" },
+      { label: "Location", value: "Northeast India" },
       {
         label: "Language",
         value: "English, Hindi, Burmese",
@@ -467,7 +494,7 @@ export const projects: Project[] = [
       "A journey with Proteen, transforming organic waste into Supercharged Fertilizer, revolutionizing farming in Africa with a circular system.",
     stripTitle: "PROTEEN",
     stripText:
-      "In Uganda, Tommie Hooft and his partners went looking for an answer to a growing pile of organic waste and found the black soldier fly. Its larvae eat the waste. What they leave behind becomes fertiliser, and the larvae themselves become animal feed. Proteen follows the company's first steps, from the test batches to the farms where the fertiliser goes into the ground.",
+      "Featuring Ugandan-based waste management company Proteen, the film navigates the opportunity and challenges posed by organic waste. Tommie Hooft and his partners found the black soldier fly: its larvae eat the waste, and what they leave behind becomes fertiliser.",
     spriteIndex: 6,
     coverImage: "/covers/proteen-cover.png",
     reelVideo: "/showreel/proteen.mp4",
@@ -492,10 +519,9 @@ export const projects: Project[] = [
     credits: [
       { label: "Director–Editor", value: "Lewis Levent" },
       { label: "Producer", value: "Tommie Hooft" },
-      { label: "Executive Producer", value: "Julian Oliver" },
       { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2023" },
-      { label: "Country", value: "Uganda" },
+      { label: "Location", value: "Uganda" },
       { label: "Language", value: "English" },
       { label: "Partners", value: "Marula Proteen Ltd" },
       { label: "Runtime", value: "20 mins" },
@@ -524,7 +550,7 @@ export const projects: Project[] = [
       "A story of seaweed, sustainability, and CO₂ mitigation through a collaborative pilot uniting public and private sectors with Thai coastal communities.",
     stripTitle: "WORLDVIEW SEAWEED",
     stripText:
-      "In Ao Luek, on the coast of Krabi, families already farm seaweed in the open sea. Thailand's Department of Fisheries has spent a year testing a new strain on shore. Ploy, from the Worldview Climate Foundation, brings the two together. Worldview Seaweed follows the trials, and whether a crop grown in the sea can pay a coastal village and take carbon out of the air.",
+      "A story of seaweed, sustainability and CO₂ mitigation through a collaborative pilot uniting public and private sectors with Thai coastal communities. In Ao Luek, on the coast of Krabi, families already farm seaweed in the open sea.",
     spriteIndex: 7,
     coverImage: "/covers/worldview-seaweed-cover.png",
     reelVideo: "/showreel/worldview-seaweed.mp4",
@@ -549,10 +575,9 @@ export const projects: Project[] = [
     credits: [
       { label: "Director–Editor", value: "Lewis Levent" },
       { label: "Producer", value: "Dr Arne Fjørtoft" },
-      { label: "Executive Producer", value: "Julian Oliver" },
       { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2023" },
-      { label: "Country", value: "Thailand" },
+      { label: "Location", value: "Thailand" },
       { label: "Language", value: "English, Thai" },
       {
         label: "Partners",

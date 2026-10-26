@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import {
+  Fragment,
   useCallback,
   useRef,
   useState,
@@ -10,6 +10,7 @@ import {
 } from "react";
 import { FilmPlayer } from "@/components/FilmPlayer";
 import { ShowreelBackdrop } from "@/components/ShowreelBackdrop";
+import { ABOUT_REEL_POSTER, ABOUT_REEL_SRC } from "@/data/showreel";
 import { bioParagraphs } from "@/data/bio";
 import type { Project } from "@/data/projects";
 
@@ -36,6 +37,11 @@ export function HomeStage({ films }: HomeStageProps) {
   const [panel, setPanel] = useState<Panel>("home");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
+  // Credits open in place rather than on their own page. The state is kept
+  // across films, so stepping the strip with them open keeps them open.
+  const [showCredits, setShowCredits] = useState(false);
+  // 0 is the film itself; 1+ index into its `pieces`.
+  const [pieceIndex, setPieceIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef(false);
   const didDragRef = useRef(false);
@@ -44,7 +50,35 @@ export function HomeStage({ films }: HomeStageProps) {
   const activePointerRef = useRef<number | null>(null);
 
   const selected = films[selectedIndex] ?? films[0];
-  const filmReel = panel === "films" ? selected?.reelVideo : undefined;
+
+  // A piece only counts once it has both a synopsis and a trailer, so a
+  // half-filled placeholder never reaches the selector.
+  const readyPieces = (selected?.pieces ?? []).filter(
+    (p) =>
+      !p.stripText.startsWith("[TODO:") &&
+      p.trailerUrl != null &&
+      !p.trailerUrl.startsWith("[TODO:"),
+  );
+  const piece = pieceIndex > 0 ? readyPieces[pieceIndex - 1] : undefined;
+
+  const activeTitle = piece?.label ?? selected?.stripTitle;
+  const activeText = piece?.stripText ?? selected?.stripText;
+  const activeTrailer = piece ? piece.trailerUrl : selected?.trailerUrl;
+  const activeCredits = piece ? piece.credits : selected?.credits;
+  // Films play their own reel, ABOUT plays Lewis on location, and the rest
+  // fall through to the general showreel inside ShowreelBackdrop.
+  const backdropSrc =
+    panel === "films"
+      ? (piece?.reelVideo ?? selected?.reelVideo)
+      : panel === "about"
+        ? ABOUT_REEL_SRC
+        : undefined;
+  const backdropPoster =
+    panel === "films"
+      ? (piece?.reelPoster ?? selected?.reelPoster)
+      : panel === "about"
+        ? ABOUT_REEL_POSTER
+        : undefined;
 
   const togglePanel = (next: Exclude<Panel, "home">) => {
     setPanel((current) => (current === next ? "home" : next));
@@ -53,6 +87,7 @@ export function HomeStage({ films }: HomeStageProps) {
   const selectFilm = (index: number) => {
     if (didDragRef.current) return;
     setSelectedIndex(index);
+    setPieceIndex(0);
     setPanel("films");
   };
 
@@ -62,6 +97,7 @@ export function HomeStage({ films }: HomeStageProps) {
         const next = (current + direction + films.length) % films.length;
         return next;
       });
+      setPieceIndex(0);
       setPanel("films");
     },
     [films.length],
@@ -106,7 +142,7 @@ export function HomeStage({ films }: HomeStageProps) {
   return (
     <div className="home-stage relative min-h-dvh overflow-x-hidden bg-black text-white md:h-dvh md:overflow-hidden">
       <div className="relative h-[min(56vh,28rem)] w-full md:absolute md:inset-0 md:h-full">
-        <ShowreelBackdrop src={filmReel} poster={selected?.reelPoster} />
+        <ShowreelBackdrop src={backdropSrc} poster={backdropPoster} />
         <div className="pointer-events-none absolute inset-0 bg-black/30 md:bg-black/25" />
         {/* Weighted left and bottom, where the copy and the strip sit, so pale reels stay readable.
             A film's synopsis needs more cover than the two lines on the home panel. */}
@@ -129,10 +165,10 @@ export function HomeStage({ films }: HomeStageProps) {
           >
             <div className="min-w-0">
               {panel === "home" ? (
-                <p className="home-ui max-w-[36rem] text-[0.7rem] uppercase leading-[1.55] tracking-[0.12em] text-white">
+                <p className="home-ui max-w-[36rem] text-[clamp(0.55rem,2.45vw,0.7rem)] uppercase leading-[1.55] tracking-[0.1em] text-white sm:tracking-[0.12em] md:text-[0.7rem]">
                   LEWIS LEVENT IS A DOCUMENTARY DIRECTOR-EDITOR AND EXPLORER.
                   <br />
-                  FOUNDER OF{" "}
+                  <span className="whitespace-nowrap">FOUNDER OF</span>{" "}
                   <a
                     href="https://gez.studio"
                     target="_blank"
@@ -141,7 +177,7 @@ export function HomeStage({ films }: HomeStageProps) {
                   >
                     GEZ STUDIO
                   </a>
-                  , BASED IN BARCELONA.
+                  <span className="whitespace-nowrap">, BASED IN BARCELONA.</span>
                 </p>
               ) : null}
 
@@ -171,13 +207,45 @@ export function HomeStage({ films }: HomeStageProps) {
               {panel === "films" && selected ? (
                 <div className="max-w-[38rem] md:max-w-[42rem]">
                   <h2 className="home-ui text-[0.7rem] uppercase tracking-[0.14em]">
-                    {selected.stripTitle}
+                    {activeTitle}
                   </h2>
+
+                  {readyPieces.length ? (
+                    <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.6rem] uppercase tracking-[0.18em]">
+                      {[selected.stripTitle, ...readyPieces.map((p) => p.label)].map(
+                        (label, index) => (
+                          <Fragment key={label}>
+                            {index > 0 ? (
+                              <span aria-hidden className="text-white/25">
+                                /
+                              </span>
+                            ) : null}
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setPieceIndex(index);
+                                setShowCredits(false);
+                              }}
+                              aria-pressed={pieceIndex === index}
+                              className={`home-ui tap-target inline-flex items-center transition ${
+                                pieceIndex === index
+                                  ? "text-white underline decoration-white/50 underline-offset-[5px]"
+                                  : "text-white/45 hover:text-white/80"
+                              }`}
+                            >
+                              {label}
+                            </button>
+                          </Fragment>
+                        ),
+                      )}
+                    </div>
+                  ) : null}
+
                   <p className="home-copy mt-4 text-[0.8125rem] leading-relaxed text-white/95 md:text-[0.75rem] md:leading-[1.7]">
-                    {selected.stripText}
+                    {activeText}
                   </p>
                   <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[0.7rem] uppercase tracking-[0.16em]">
-                    {selected.trailerUrl ? (
+                    {activeTrailer ? (
                       <button
                         type="button"
                         onClick={() => setPlaying(true)}
@@ -186,12 +254,33 @@ export function HomeStage({ films }: HomeStageProps) {
                         PLAY
                       </button>
                     ) : null}
-                    <Link
-                      href={`/projects/${selected.slug}`}
-                      className="home-ui tap-target inline-flex items-center text-white/80 transition hover:text-white"
-                    >
-                      CREDITS
-                    </Link>
+                    {activeCredits?.length ? (
+                      <button
+                        type="button"
+                        onClick={() => setShowCredits((open) => !open)}
+                        aria-expanded={showCredits}
+                        className={`home-ui tap-target inline-flex items-center gap-1.5 transition ${
+                          showCredits ? "text-white" : "text-white/80 hover:text-white"
+                        }`}
+                      >
+                        CREDITS
+                        <svg
+                          aria-hidden
+                          viewBox="0 0 10 6"
+                          className={`h-[0.3rem] w-[0.5rem] transition-transform ${
+                            showCredits ? "rotate-180" : ""
+                          }`}
+                        >
+                          <path
+                            d="M1 1l4 4 4-4"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="square"
+                          />
+                        </svg>
+                      </button>
+                    ) : null}
                     {selected.fromAshesUrl ? (
                       <a
                         href={selected.fromAshesUrl}
@@ -203,6 +292,19 @@ export function HomeStage({ films }: HomeStageProps) {
                       </a>
                     ) : null}
                   </div>
+
+                  {showCredits && activeCredits?.length ? (
+                    <dl className="mt-5 grid grid-cols-[minmax(0,8.5rem)_1fr] gap-x-5 gap-y-1.5 text-[0.7rem] leading-relaxed sm:grid-cols-[minmax(0,11rem)_1fr]">
+                      {activeCredits.map(({ label, value }) => (
+                        <Fragment key={label}>
+                          <dt className="home-ui uppercase tracking-[0.12em] text-white/45">
+                            {label}
+                          </dt>
+                          <dd className="home-copy text-white/90">{value}</dd>
+                        </Fragment>
+                      ))}
+                    </dl>
+                  ) : null}
                 </div>
               ) : null}
             </div>
@@ -276,8 +378,8 @@ export function HomeStage({ films }: HomeStageProps) {
 
       {playing && selected ? (
         <FilmPlayer
-          title={selected.stripTitle}
-          trailerUrl={selected.trailerUrl}
+          title={activeTitle}
+          trailerUrl={activeTrailer}
           onBack={() => setPlaying(false)}
           onPrev={() => stepFilm(-1)}
           onNext={() => stepFilm(1)}

@@ -3,6 +3,11 @@ export const SHOWREEL_SRC = "/showreel/lew-reel.mp4";
 
 export const SHOWREEL_POSTER = "/showreel/lew-reel-poster.jpg";
 
+/** Played behind the ABOUT panel. Source: GIFS/Lew about.mp4 */
+export const ABOUT_REEL_SRC = "/showreel/lew-about.mp4";
+
+export const ABOUT_REEL_POSTER = "/showreel/lew-about-poster.jpg";
+
 export const SHOWREEL_STILLS = [
   "/director-gallery/amazon-798.png",
   "/director-gallery/zm-selects-1.png",
