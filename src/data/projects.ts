@@ -21,6 +21,8 @@ export type ProjectPiece = {
   trailerUrl?: string;
   reelVideo?: string;
   reelPoster?: string;
+  /** Merged over the parent film's credits by label, so a piece only states
+   *  what differs. A label not already there is appended. */
   credits?: ProjectCredit[];
 };
 
@@ -360,13 +362,8 @@ export const projects: Project[] = [
         trailerUrl: "https://vimeo.com/1079899991",
         reelVideo: "/showreel/kamine-nana.mp4",
         reelPoster: "/showreel/kamine-nana-poster.jpg",
-        credits: [
-          { label: "Director\u2013Editor", value: "Lewis Levent" },
-          { label: "Format", value: "Music Video" },
-          { label: "Runtime", value: "5 mins 37 secs" },
-          { label: "Production Company", value: "Gez Studio" },
-          { label: "Status", value: "Completed" },
-        ],
+        // Identical to Nana's apart from the runtime.
+        credits: [{ label: "Runtime", value: "5 mins 37 secs" }],
       },
     ],
   },

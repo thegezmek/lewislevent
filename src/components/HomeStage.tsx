@@ -16,6 +16,23 @@ import type { Project } from "@/data/projects";
 
 type Panel = "home" | "films" | "about" | "contact";
 
+/** A piece states only what differs, so its rows are merged over the film's
+ *  by label and anything new is appended. */
+function mergeCredits(
+  base: Project["credits"],
+  overrides: Project["credits"],
+): Project["credits"] {
+  if (!overrides?.length) return base;
+  if (!base?.length) return overrides;
+  const merged = base.map(
+    (row) => overrides.find((o) => o.label === row.label) ?? row,
+  );
+  const extra = overrides.filter(
+    (o) => !base.some((row) => row.label === o.label),
+  );
+  return [...merged, ...extra];
+}
+
 /** The email sits on its own line below these, spelled out rather than labelled. */
 const CONTACT_LINKS = [
   { label: "VIMEO", href: "https://vimeo.com/gezstudio" },
@@ -66,7 +83,9 @@ export function HomeStage({ films }: HomeStageProps) {
     piece?.label ?? selected?.baseLabel ?? selected?.stripTitle;
   const activeText = piece?.stripText ?? selected?.stripText;
   const activeTrailer = piece ? piece.trailerUrl : selected?.trailerUrl;
-  const activeCredits = piece ? piece.credits : selected?.credits;
+  const activeCredits = piece
+    ? mergeCredits(selected?.credits, piece.credits)
+    : selected?.credits;
   // Films play their own reel, ABOUT plays Lewis on location, and the rest
   // fall through to the general showreel inside ShowreelBackdrop.
   const backdropSrc =
