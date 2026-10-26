@@ -67,7 +67,9 @@ export default function Home() {
       <div className="sr-only">
         <h1>{`${fullName}, ${roleLine} in ${location}`}</h1>
         {bioParagraphs.map((paragraph) => (
-          <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+          <p key={paragraph.slice(0, 24)} className="whitespace-pre-line">
+            {paragraph}
+          </p>
         ))}
       </div>
       <HomeStage films={projects} />

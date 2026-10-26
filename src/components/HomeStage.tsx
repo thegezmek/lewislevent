@@ -186,7 +186,9 @@ export function HomeStage({ films }: HomeStageProps) {
               {panel === "about" ? (
                 <div className="home-copy flex max-w-[38rem] flex-col gap-3 text-[0.8125rem] leading-relaxed text-white/95 md:max-w-[42rem] md:text-[0.75rem] md:leading-[1.7]">
                   {bioParagraphs.map((paragraph) => (
-                    <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+                    <p key={paragraph.slice(0, 24)} className="whitespace-pre-line">
+                      {paragraph}
+                    </p>
                   ))}
                 </div>
               ) : null}

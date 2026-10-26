@@ -154,21 +154,26 @@ export function FilmPlayer({
         ) : null}
       </div>
 
-      <div className="absolute inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom))] z-10 flex justify-between px-4 md:hidden">
-        <button
-          type="button"
-          onClick={onPrev}
-          className="home-ui tap-target inline-flex items-center text-[0.7rem] uppercase tracking-[0.16em] text-white"
-        >
-          PREV
-        </button>
-        <button
-          type="button"
-          onClick={onNext}
-          className="home-ui tap-target inline-flex items-center text-[0.7rem] uppercase tracking-[0.16em] text-white"
-        >
-          NEXT
-        </button>
+      <div className="absolute inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom))] z-10 px-4 md:px-8">
+        <p className="home-ui mb-3 text-center text-[0.7rem] uppercase leading-[1.5] tracking-[0.16em] text-white/75 md:mb-0">
+          {title}
+        </p>
+        <div className="flex justify-between md:hidden">
+          <button
+            type="button"
+            onClick={onPrev}
+            className="home-ui tap-target inline-flex items-center text-[0.7rem] uppercase tracking-[0.16em] text-white"
+          >
+            PREV
+          </button>
+          <button
+            type="button"
+            onClick={onNext}
+            className="home-ui tap-target inline-flex items-center text-[0.7rem] uppercase tracking-[0.16em] text-white"
+          >
+            NEXT
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -19,6 +19,6 @@ export const siteDescription =
  *  studio are carried by the two permanent lines above the panel, and the nine
  *  film titles by the strip's aria-labels, so none of them repeat here. */
 export const bioParagraphs = [
-  "There is a feeling I chase in the full immersion of a story. It takes you out of spectating and hands you something you can use in your own life.",
+  "There is a feeling I chase in the full immersion of a story.\nIt takes you out of spectating and hands you something you can use in your own life.",
   "Over the last five years I directed and edited my debut collection across T\u00fcrkiye, East Africa, India, Southeast Asia and the Amazon. I want a viewer anywhere to find some resonance in a world nothing like their own.",
 ] as const;
