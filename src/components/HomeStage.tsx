@@ -359,7 +359,7 @@ export function HomeStage({ films }: HomeStageProps) {
             onPointerUp={handlePointerEnd}
             onPointerCancel={handlePointerEnd}
             onDragStart={(event) => event.preventDefault()}
-            className="film-strip -mx-4 cursor-grab overflow-x-auto overscroll-x-contain px-4 pb-1 active:cursor-grabbing sm:-mx-6 sm:px-6 md:mx-0 md:px-0"
+            className="film-strip -mx-4 cursor-grab overflow-x-auto overscroll-x-contain px-4 py-3 active:cursor-grabbing sm:-mx-6 sm:px-6 md:mx-0 md:px-0"
           >
             <ul className="flex w-max gap-3 md:gap-4">
               {films.map((film, index) => (
@@ -385,6 +385,9 @@ export function HomeStage({ films }: HomeStageProps) {
                         sizes="220px"
                       />
                     ) : null}
+                    <span className="film-cover-title pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-2 pb-1.5 pt-6 text-left text-[0.5rem] uppercase leading-[1.3] tracking-[0.08em] text-white sm:text-[0.55rem]">
+                      {film.shortTitle}
+                    </span>
                   </button>
                 </li>
               ))}
