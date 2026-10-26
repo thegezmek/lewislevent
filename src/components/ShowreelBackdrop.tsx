@@ -14,13 +14,16 @@ type Layer = {
 
 export function ShowreelBackdrop({ src, poster }: ShowreelBackdropProps = {}) {
   // No default: the caller decides which reel, and passes nothing until it
-  // knows the viewport. The stills stand in for that first moment.
+  // knows the viewport. Black stands in for that first moment.
   const videoSrc = src;
   const videoPoster = poster;
 
   /** The reel on screen, which lags behind the prop until the next one can play. */
   const [shown, setShown] = useState<Layer>({ src: videoSrc, poster: videoPoster });
-  const incoming = shown.src !== videoSrc;
+  // Only fade when there is something to fade from. Without this the very
+  // first reel mounts transparent waiting to replace nothing, and a video at
+  // zero opacity is one mobile browsers decline to start, so it never arrives.
+  const incoming = Boolean(shown.src) && shown.src !== videoSrc;
 
   if (videoSrc) {
     return (
