@@ -395,7 +395,7 @@ export function HomeStage({ films }: HomeStageProps) {
 
             <nav
               aria-label="Primary"
-              className="order-first flex shrink-0 items-center gap-5 text-[0.7rem] uppercase tracking-[0.16em] md:order-none md:pt-0"
+              className="order-first flex shrink-0 items-center gap-5 text-[0.7rem] uppercase tracking-[0.16em] md:absolute md:right-8 md:top-1/2 md:order-none md:-translate-y-1/2 md:pt-0"
             >
               {(["films", "about", "contact"] as const).map((id) => (
                 <button

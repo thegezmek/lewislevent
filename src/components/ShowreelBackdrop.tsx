@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { SHOWREEL_STILLS } from "@/data/showreel";
 
 type ShowreelBackdropProps = {
   src?: string;
@@ -58,22 +57,8 @@ export function ShowreelBackdrop({ src, poster }: ShowreelBackdropProps = {}) {
     );
   }
 
-  return (
-    <div className="showreel-stills absolute inset-0 overflow-hidden" aria-hidden>
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${SHOWREEL_STILLS[0]})` }}
-      />
-      {SHOWREEL_STILLS.map((still, index) => (
-        <div
-          key={still}
-          className="showreel-still absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${still})`,
-            animationDelay: `${index * 8}s`,
-          }}
-        />
-      ))}
-    </div>
-  );
+  // The caller withholds the source for the moment it takes to learn whether
+  // this is a phone. Black, not a stand-in image: the stage is black anyway,
+  // so the wait is invisible rather than a flash of an unrelated still.
+  return <div className="absolute inset-0 bg-black" aria-hidden />;
 }
