@@ -58,7 +58,8 @@ export function HomeStage({ films }: HomeStageProps) {
   );
   const piece = pieceIndex > 0 ? readyPieces[pieceIndex - 1] : undefined;
 
-  const activeTitle = piece?.label ?? selected?.stripTitle;
+  const activeTitle =
+    piece?.label ?? selected?.baseLabel ?? selected?.stripTitle;
   const activeText = piece?.stripText ?? selected?.stripText;
   const activeTrailer = piece ? piece.trailerUrl : selected?.trailerUrl;
   const activeCredits = piece ? piece.credits : selected?.credits;
@@ -205,7 +206,10 @@ export function HomeStage({ films }: HomeStageProps) {
                 <div className="max-w-[38rem] md:max-w-[42rem]">
                   {readyPieces.length ? (
                     <h2 className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.7rem] uppercase tracking-[0.14em]">
-                      {[selected.stripTitle, ...readyPieces.map((p) => p.label)].map(
+                      {[
+                        selected.baseLabel ?? selected.stripTitle,
+                        ...readyPieces.map((p) => p.label),
+                      ].map(
                         (label, index) => (
                           <Fragment key={label}>
                             {index > 0 ? (

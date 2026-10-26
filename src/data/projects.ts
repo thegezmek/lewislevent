@@ -68,6 +68,8 @@ export type Project = {
   /** Extra films under this cover. A piece appears in the selector once it has
    *  a trailer; its description falls back to the parent film's. */
   pieces?: ProjectPiece[];
+  /** What the selector calls this film, when that differs from `stripTitle`. */
+  baseLabel?: string;
 };
 
 export const projects: Project[] = [
@@ -339,7 +341,7 @@ export const projects: Project[] = [
     coverImage: "/covers/voice-of-the-earth-cover.jpg",
     reelVideo: "/showreel/voice-of-the-earth.mp4",
     reelPoster: "/showreel/voice-of-the-earth-poster.jpg",
-    trailerUrl: "https://vimeo.com/1034632699",
+    trailerUrl: "https://vimeo.com/1108895359/7235adde5b",
     credits: [
       { label: "Director–Editor", value: "Lewis Levent" },
       { label: "Producer–Composer", value: "Ryan Whitewolf" },
@@ -351,6 +353,7 @@ export const projects: Project[] = [
       { label: "Location", value: "Amazon, Budapest" },
       { label: "Status", value: "Completed" },
     ],
+    baseLabel: "NANA",
     pieces: [
       {
         label: "KAMINE NANA",
