@@ -248,7 +248,7 @@ export function HomeStage({ films }: HomeStageProps) {
               ) : null}
 
               {panel === "about" ? (
-                <div className="home-copy flex max-w-[38rem] flex-col gap-3 text-[0.8125rem] leading-relaxed text-white/95 md:max-w-[42rem] md:text-[0.75rem] md:leading-[1.7]">
+                <div className="home-copy flex max-w-[38rem] flex-col gap-3 text-[0.75rem] leading-relaxed text-white/95 md:max-w-[42rem] md:text-[0.7rem] md:leading-[1.75]">
                   {bioParagraphs.map((paragraph) => (
                     <p key={paragraph.slice(0, 24)} className="whitespace-pre-line">
                       {paragraph}
