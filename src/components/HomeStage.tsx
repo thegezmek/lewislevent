@@ -11,21 +11,21 @@ import {
 import { FilmPlayer } from "@/components/FilmPlayer";
 import { ShowreelBackdrop } from "@/components/ShowreelBackdrop";
 import { ABOUT_REEL_POSTER, ABOUT_REEL_SRC } from "@/data/showreel";
-import { bioParagraphs } from "@/data/bio";
+import { bioParagraphs, contactEmail } from "@/data/bio";
 import type { Project } from "@/data/projects";
 
 type Panel = "home" | "films" | "about" | "contact";
 
+/** The email sits on its own line below these, spelled out rather than labelled. */
 const CONTACT_LINKS = [
   { label: "VIMEO", href: "https://vimeo.com/gezstudio" },
   { label: "INSTAGRAM", href: "https://www.instagram.com/lewislevent/" },
   { label: "LINKEDIN", href: "[TODO: LinkedIn URL]" },
-  { label: "E-MAIL", href: "mailto:lewis@gez.studio" },
 ] as const;
 
-/** Says what Lewis is open to, so CONTACT is an invitation rather than a list. */
+/** Says what CONTACT is for, so the panel is an invitation rather than a list. */
 const CONTACT_LINE =
-  "I take directing and editing commissions, including brand films. The collection is available for distribution.";
+  "For film commissions, branded film and distribution inquiries.";
 
 const VISIBLE_CONTACT = CONTACT_LINKS.filter(
   (link) => !link.href.startsWith("[TODO:"),
@@ -203,8 +203,8 @@ export function HomeStage({ films }: HomeStageProps) {
                       <li key={link.label}>
                         <a
                           href={link.href}
-                          target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                          rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="home-ui tap-target inline-flex items-center text-white/80 transition hover:text-white"
                         >
                           {link.label}
@@ -212,6 +212,12 @@ export function HomeStage({ films }: HomeStageProps) {
                       </li>
                     ))}
                   </ul>
+                  <a
+                    href={`mailto:${contactEmail}`}
+                    className="home-ui tap-target mt-3 inline-flex items-center text-[0.875rem] font-medium tracking-[0.01em] text-white transition hover:text-white/75 md:text-[0.8125rem]"
+                  >
+                    {contactEmail}
+                  </a>
                 </div>
               ) : null}
 
