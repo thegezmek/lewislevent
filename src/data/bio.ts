@@ -5,7 +5,7 @@ export const siteUrl = "https://lewislevent.com";
 
 export const fullName = "Lewis Levent";
 
-export const roleLine = "Documentary Director and Editor";
+export const roleLine = "Documentary director-editor";
 
 export const location = "Barcelona";
 
