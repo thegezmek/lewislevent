@@ -20,7 +20,7 @@ type Panel = "home" | "films" | "about" | "contact";
 const CONTACT_LINKS = [
   { label: "VIMEO", href: "https://vimeo.com/gezstudio" },
   { label: "INSTAGRAM", href: "https://www.instagram.com/lewislevent/" },
-  { label: "LINKEDIN", href: "[TODO: LinkedIn URL]" },
+  { label: "LINKEDIN", href: "https://www.linkedin.com/in/lewislevent/" },
 ] as const;
 
 /** Says what CONTACT is for, so the panel is an invitation rather than a list. */
