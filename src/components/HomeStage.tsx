@@ -459,8 +459,7 @@ export function HomeStage({ films }: HomeStageProps) {
           </div>
           ) : null}
           <p className="home-ui mt-4 text-[0.5rem] uppercase tracking-[0.12em] text-white/40 md:text-[0.52rem] md:tracking-[0.14em]">
-            Lewis Levent © 2026 · All rights reserved · Directorial debut
-            collection (2021–2026).
+            Lewis Levent © 2026 · All rights reserved.
           </p>
         </div>
       </div>

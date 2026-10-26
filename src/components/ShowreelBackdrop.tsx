@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type ShowreelBackdropProps = {
   src?: string;
@@ -25,6 +25,26 @@ export function ShowreelBackdrop({ src, poster }: ShowreelBackdropProps = {}) {
   // zero opacity is one mobile browsers decline to start, so it never arrives.
   const incoming = Boolean(shown.src) && shown.src !== videoSrc;
 
+  // React sets `muted` as a property, and iOS reads the attribute when it
+  // decides whether a video may autoplay. A reel mounted after hydration can
+  // therefore be refused. Set the attribute ourselves and ask it to play.
+  const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !videoSrc) return;
+    el.muted = true;
+    el.defaultMuted = true;
+    el.setAttribute("muted", "");
+    const attempt = () => void el.play().catch(() => {});
+    attempt();
+    el.addEventListener("loadeddata", attempt);
+    el.addEventListener("canplay", attempt);
+    return () => {
+      el.removeEventListener("loadeddata", attempt);
+      el.removeEventListener("canplay", attempt);
+    };
+  }, [videoSrc]);
+
   if (videoSrc) {
     return (
       <div className="showreel-media absolute inset-0 overflow-hidden bg-black">
@@ -43,6 +63,7 @@ export function ShowreelBackdrop({ src, poster }: ShowreelBackdropProps = {}) {
         ) : null}
         <video
           key={videoSrc}
+          ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover"
           style={{ opacity: incoming ? 0 : 1 }}
           src={videoSrc}
