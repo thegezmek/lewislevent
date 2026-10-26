@@ -139,25 +139,28 @@ export function FilmPlayer({
         NEXT
       </button>
 
+      {/* The title sits in the video's own column so it lands at its bottom left. */}
       <div className="flex h-full items-center justify-center px-0 md:px-24">
-        {src ? (
-          <iframe
-            key={src}
-            ref={iframeRef}
-            src={src}
-            title={`${title} trailer`}
-            className="h-full w-full md:h-[min(80vh,56.25vw)] md:w-[min(100%,140vh)]"
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          />
-        ) : null}
+        <div className="w-full md:w-[min(100%,140vh)]">
+          {src ? (
+            <iframe
+              key={src}
+              ref={iframeRef}
+              src={src}
+              title={`${title} trailer`}
+              className="aspect-video w-full md:aspect-auto md:h-[min(80vh,56.25vw)]"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          ) : null}
+          <p className="home-ui mt-4 px-4 text-[0.875rem] uppercase leading-[1.35] tracking-[0.12em] text-white md:mt-5 md:px-0 md:text-[1.05rem]">
+            {title}
+          </p>
+        </div>
       </div>
 
       <div className="absolute inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom))] z-10 px-4 md:px-8">
-        <p className="home-ui mb-3 text-center text-[0.7rem] uppercase leading-[1.5] tracking-[0.16em] text-white/75 md:mb-0">
-          {title}
-        </p>
         <div className="flex justify-between md:hidden">
           <button
             type="button"

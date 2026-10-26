@@ -86,7 +86,7 @@ export const projects: Project[] = [
     country: "Türkiye",
     logline:
       "After the fires, a beekeeper returns to a vanished forest and an ancient tradition facing an uncertain future.",
-    stripTitle: "FROM ASHES — EPISODE 1: LAND OF THE HONEY BUG",
+    stripTitle: "FROM ASHES, EPISODE 1: LAND OF THE HONEY BUG",
     stripText:
       "After the fires, a beekeeper returns to a vanished forest and an ancient tradition facing an uncertain future. Two months after Türkiye's 2021 wildfires, Hüseyin walks through his village in Muğla, where his home and the surrounding pine forests have been reduced to ash.",
     spriteIndex: 0,
@@ -105,7 +105,7 @@ export const projects: Project[] = [
       "/stills/from-ashes-i/new-09.png",
     ],
     trailerUrl: "https://vimeo.com/1099954712/8103f5b26c?share=copy",
-    titleKicker: "From Ashes — Episode 1",
+    titleKicker: "From Ashes, Episode 1",
     titleHeadline: "Land of the Honey Bug",
     fromAshesUrl: "https://fromashes.film",
     synopsisParagraphs: [
@@ -169,7 +169,7 @@ export const projects: Project[] = [
     country: "Türkiye",
     logline:
       "As wildfire approaches Ormana, a mountain community draws on its knowledge of the forest to protect their 800-year-old village.",
-    stripTitle: "FROM ASHES — EPISODE 2: THE MOUNTAINSIDE OF ORMANA",
+    stripTitle: "FROM ASHES, EPISODE 2: THE MOUNTAINSIDE OF ORMANA",
     stripText:
       "As wildfire approaches Ormana, a mountain community draws on its knowledge of the forest to protect their 800-year-old village. Life there is bound to the surrounding forest, and as the fire closes in they turn to instinct, knowledge and each other.",
     spriteIndex: 1,
@@ -188,7 +188,7 @@ export const projects: Project[] = [
       "/stills/from-ashes-ii/still-09.png",
     ],
     trailerUrl: "https://vimeo.com/1101667778/9933555489?share=copy",
-    titleKicker: "From Ashes — Episode 2",
+    titleKicker: "From Ashes, Episode 2",
     titleHeadline: "The Mountainside of Ormana",
     fromAshesUrl: "https://fromashes.film",
     synopsisParagraphs: [
