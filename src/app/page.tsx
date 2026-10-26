@@ -47,7 +47,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${siteUrl}/#website`,
       url: siteUrl,
-      name: `${fullName} — ${roleLine}`,
+      name: `${fullName} · ${roleLine}`,
       description: siteDescription,
       inLanguage: "en",
       publisher: { "@id": `${siteUrl}/#lewis-levent` },

@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return {};
-  // The root layout appends "— Lewis Levent" through the title template.
+  // The root layout appends "· Lewis Levent" through the title template.
   return {
     title: project.title,
     description:

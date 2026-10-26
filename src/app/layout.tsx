@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { fullName, roleLine, siteDescription, siteUrl } from "@/data/bio";
 
-const siteTitle = `${fullName} \u2014 ${roleLine}, Barcelona`;
+const siteTitle = `${fullName} \u00b7 ${roleLine}, Barcelona`;
 
 const metadataBase = new URL(
   process.env.NEXT_PUBLIC_SITE_URL ?? siteUrl,
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   metadataBase,
   title: {
     default: siteTitle,
-    template: `%s \u2014 ${fullName}`,
+    template: `%s \u00b7 ${fullName}`,
   },
   description: siteDescription,
   alternates: {
