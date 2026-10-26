@@ -329,7 +329,7 @@ export const projects: Project[] = [
     yearLabel: "2024",
     status: "completed",
     statusLabel: "[Completed]",
-    runtime: "3 mins 50 secs",
+    runtime: "7 mins 6 secs",
     synopsis:
       "Raine Piyãko of the Ashaninka tribe brings the sacred music of the Amazon together with a symphonic orchestral ensemble from Hungary.",
     country: "Amazon, Budapest",
@@ -347,7 +347,7 @@ export const projects: Project[] = [
       { label: "Producer–Composer", value: "Ryan Whitewolf" },
       { label: "Artist", value: "Raine Piyãko" },
       { label: "Format", value: "Music Video" },
-      { label: "Runtime", value: "3 mins 50 secs" },
+      { label: "Runtime", value: "7 mins 6 secs" },
       { label: "Production Company", value: "Gez Studio" },
       { label: "Year", value: "2024" },
       { label: "Location", value: "Amazon, Budapest" },
