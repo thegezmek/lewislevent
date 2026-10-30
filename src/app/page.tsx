@@ -22,7 +22,7 @@ const jsonLd = {
       jobTitle: roleLine,
       description: siteDescription,
       url: siteUrl,
-      image: `${siteUrl}/images/og-cover-v2.jpg`,
+      image: `${siteUrl}/images/og-cover-v4.jpg`,
       email: `mailto:${contactEmail}`,
       address: {
         "@type": "PostalAddress",

@@ -28,13 +28,13 @@ export const metadata: Metadata = {
     // the image URL, so reusing a name leaves the old picture in place.
     images: [
       {
-        url: "/images/og-cover-landscape-v3.jpg",
+        url: "/images/og-cover-landscape-v4.jpg",
         width: 1200,
         height: 630,
         alt: "Lewis Levent",
       },
       {
-        url: "/images/og-cover-v3.jpg",
+        url: "/images/og-cover-v4.jpg",
         width: 1200,
         height: 1200,
         alt: "Lewis Levent",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: ["/images/og-cover-landscape-v3.jpg"],
+    images: ["/images/og-cover-landscape-v4.jpg"],
   },
   icons: {
     icon: [
