@@ -24,18 +24,20 @@ export const metadata: Metadata = {
     siteName: fullName,
     title: siteTitle,
     description: siteDescription,
+    // New filenames on purpose: WhatsApp and the rest cache a preview against
+    // the image URL, so reusing a name leaves the old picture in place.
     images: [
       {
-        url: "/images/og-cover-landscape-v2.jpg",
+        url: "/images/og-cover-landscape-v3.jpg",
         width: 1200,
         height: 630,
-        alt: "Lewis Levent on location during documentary production",
+        alt: "Lewis Levent",
       },
       {
-        url: "/images/og-cover-v2.jpg",
+        url: "/images/og-cover-v3.jpg",
         width: 1200,
         height: 1200,
-        alt: "Lewis Levent on location during documentary production",
+        alt: "Lewis Levent",
       },
     ],
   },
@@ -43,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: ["/images/og-cover-landscape-v2.jpg"],
+    images: ["/images/og-cover-landscape-v3.jpg"],
   },
   icons: {
     icon: [
